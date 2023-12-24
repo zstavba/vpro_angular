@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+declare var jQuery: any; 
+
 @Component({
   selector: 'navbar',
   standalone: true,
@@ -11,5 +13,10 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
+
+
+  openUserMenu = () => {
+   jQuery('#DropdownUserMenu').fadeToggle()
+  }
 
 }
