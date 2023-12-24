@@ -6,6 +6,7 @@ import { UserInboxComponent } from './user-inbox/user-inbox.component';
 import { UserWorkInfoComponent } from './user-work-info/user-work-info.component';
 import { UserFileManagerComponent } from './user-file-manager/user-file-manager.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const route: Routes = [
   {
@@ -34,7 +35,8 @@ const route: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild(route)
+    RouterModule.forChild(route),
+    HttpClientModule
   ]
 })
 export class UserModule { }
