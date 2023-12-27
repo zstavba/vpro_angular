@@ -15,7 +15,8 @@ const route: Routes = [
   },
   {
     path: "inbox",
-    component: UserInboxComponent
+    component: UserInboxComponent,
+    loadChildren: () => import('./user-inbox/user-inbox.module').then(m => m.UserInboxModule)
   },
   {
     path: "work/info",

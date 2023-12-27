@@ -8,6 +8,7 @@ import { InboxService } from './Services/inbox.service';
 import { UserService } from './Services/user.service';
 import { MeasurementsService } from './Services/measurements.service';
 import { WorkOrderService } from './Services/work-order.service';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ import { WorkOrderService } from './Services/work-order.service';
     RouterOutlet, 
     UserAvatarComponent, 
     HttpClientModule, 
+    EditorModule
 
   ],
   providers: [
