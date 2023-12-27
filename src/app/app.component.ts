@@ -12,13 +12,19 @@ import { WorkOrderService } from './Services/work-order.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, UserAvatarComponent, HttpClientModule],
+  imports: [
+    CommonModule, 
+    RouterOutlet, 
+    UserAvatarComponent, 
+    HttpClientModule, 
+
+  ],
   providers: [
     WarehouseService,
     InboxService,
     UserService,
     MeasurementsService,
-    WorkOrderService
+    WorkOrderService,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
