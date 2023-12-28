@@ -8,7 +8,9 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage : {
-        'productivity' : 'url("/assets/images/bgs/5803426.jpg")'
+        'productivity' : 'url("/assets/images/bgs/5803426.jpg")',
+        'fabric': 'url("/assets/images/bgs/filtered-fibers.jpg")',
+        'silon': 'url("/assets/images/bgs/silon-fibers.jpg")'
       },
       fontFamily: {
         'Sevillana': ['"Sevillana"', ...defaultTheme.fontFamily.sans]
