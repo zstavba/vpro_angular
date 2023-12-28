@@ -1,0 +1,30 @@
+<tr>
+    <td class="relative px-7 sm:w-12 sm:px-6">
+        <!-- Selected row marker, only show when row is selected. -->
+        <!-- <div class="absolute inset-y-0 left-0 w-0.5 bg-indigo-600"></div> -->
+
+        <input type="checkbox" class="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+    </td>
+    <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+        {{ itemData.workorder_id }}
+    </td>
+    <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+        {{ itemData.workorder_title }}
+    </td>
+    <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+        @switch(itemData.workorder_status){
+            @case('Zaključeno'){
+                <span class="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-800 ring-1 ring-inset ring-red-600/20">Zaključeno</span>
+            }
+            @case('Na čakanju'){
+                <span class="inline-flex items-center rounded-full bg-gray-50 px-2 py-1 text-xs font-medium text-gray-800 ring-1 ring-inset ring-gray-600/20">Na čakanju</span>
+            }
+            @case('Poknjiži'){
+                <span class="inline-flex items-center rounded-full bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-800 ring-1 ring-inset ring-yellow-600/20">Poknjiži</span>
+            }
+        }
+    </td>
+    <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">
+        {{ itemData.workorder_date }}
+    </td>
+</tr>

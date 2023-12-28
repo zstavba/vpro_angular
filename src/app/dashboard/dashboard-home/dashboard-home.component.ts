@@ -1,16 +1,28 @@
 import { Component } from '@angular/core';
 import { SystemPaginationComponent } from '../components/system-pagination/system-pagination.component';
+import { TableRowOrderSaveComponent } from '../components/table-row-order-save/table-row-order-save.component';
+
+enum  WORKORDER_STATUS {
+  FINISHED = 'Zaključeno',
+  WAITING = "Na čakanju",
+  EDIT = "Poknjiži"
+}
 
 @Component({
   selector: 'app-dashboard-home',
   standalone: true,
   imports: [
-    SystemPaginationComponent
+    SystemPaginationComponent,
+    TableRowOrderSaveComponent
   ],
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.scss'
 })
+
+
 export class DashboardHomeComponent {
+
+  
   public WorkOrdersList : Array<any> = [
     {
       workorder_id: 23005895,
@@ -61,5 +73,46 @@ export class DashboardHomeComponent {
       }
     }
   ]
+
+  public WorkOrderSaveKList : Array<any> = [
+    {
+      workorder_id: 230058965,
+      workorder_title: "FLIS/F T15 (2424) 500/212",
+      workorder_status: WORKORDER_STATUS.FINISHED,
+      workorder_date: "13. Januar 2024" 
+    },
+    {
+      workorder_id: 230058794,
+      workorder_title: "FLIS/F T10 (2020) 480/225",
+      workorder_status: WORKORDER_STATUS.EDIT,
+      workorder_date: "15. Januar 2024" 
+    },
+    {
+      workorder_id: 230058694,
+      workorder_title: "FLIS/F T9 (2323) 570/230",
+      workorder_status: WORKORDER_STATUS.WAITING,
+      workorder_date: "17. Januar 2024" 
+    },
+    {
+      workorder_id: 230058745,
+      workorder_title: "FLIS/F T4 (0504) 525/212",
+      workorder_status: WORKORDER_STATUS.WAITING,
+      workorder_date: "17. Januar 2024" 
+    },
+    {
+      workorder_id: 230058649,
+      workorder_title: "FLIS/F T3 (_01) 350/225",
+      workorder_status: WORKORDER_STATUS.WAITING,
+      workorder_date: "18. Januar 2024" 
+    },
+    {
+      workorder_id: 230058698,
+      workorder_title: "FLIS/F T15 (118118) 550/225",
+      workorder_status: WORKORDER_STATUS.WAITING,
+      workorder_date: "18. Januar 2024" 
+    }
+  ]
+
+
 
 }
