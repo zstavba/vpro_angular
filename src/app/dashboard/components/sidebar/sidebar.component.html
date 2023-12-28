@@ -18,7 +18,7 @@
                 </a>
               </li>
               <li>
-                <a [routerLink]="['users']" class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
+                <a routerLink="/profile/inbox" class="text-gray-700 hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                   <svg  class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600"   xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>                  
@@ -67,6 +67,7 @@
                   Meritve
                 </a>
               </li>
+              <!-- Database menu START -->
               <li>
                 <div (click)="toggleSlideDropDownMenu('baze_drop_down')"   class="cursor-pointer hover:text-indigo-600 hover:bg-gray-50 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold">
                   <svg class="h-6 w-6 shrink-0 text-gray-400 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -364,6 +365,7 @@
                   </div>
                 </div>
               </li>
+              <!-- Database menu END -->
             </ul>
           </li>
           <li>
