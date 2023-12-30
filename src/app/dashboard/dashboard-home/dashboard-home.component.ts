@@ -96,7 +96,7 @@ export class DashboardHomeComponent {
     {
       workorder_id: 230058745,
       workorder_title: "FLIS/F T4 (0504) 525/212",
-      workorder_status: WORKORDER_STATUS.WAITING,
+      workorder_status: WORKORDER_STATUS.FINISHED,
       workorder_date: "17. Januar 2024" 
     },
     {
@@ -108,7 +108,7 @@ export class DashboardHomeComponent {
     {
       workorder_id: 230058698,
       workorder_title: "FLIS/F T15 (118118) 550/225",
-      workorder_status: WORKORDER_STATUS.WAITING,
+      workorder_status: WORKORDER_STATUS.EDIT,
       workorder_date: "18. Januar 2024" 
     }
   ]
