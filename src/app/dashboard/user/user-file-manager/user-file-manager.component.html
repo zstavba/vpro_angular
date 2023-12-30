@@ -1,1 +1,289 @@
-<p>user-file-manager works!</p>
+<div class="space-y-4">
+    <fieldset>
+        <div class="grid grid-cols-2 gap-4">
+            <legend class="text-base font-semibold leading-6 text-gray-900">Tip datotek za prikaz </legend>
+            <div class="text-right space-x-4">
+                <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">Ustvari mapo</button>
+                <button type="button" class="rounded bg-green-50 px-2 py-1 text-xs font-semibold text-green-600 shadow-sm hover:bg-green-100">Naloži datoteko</button>
+
+            </div>
+        </div>
+        <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-3 sm:gap-x-4">
+          <!-- Active: "border-indigo-600 ring-2 ring-indigo-600", Not Active: "border-gray-300" -->
+          <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+            <input type="radio" name="project-type" value="Newsletter" class="sr-only" aria-labelledby="project-type-0-label" aria-describedby="project-type-0-description-0 project-type-0-description-1">
+            <span class="flex flex-1">
+              <span class="flex flex-col">
+                <span id="project-type-0-label" class="block text-sm font-medium text-gray-900">PDF Datoteke</span>
+                <span id="project-type-0-description-0" class="mt-1 flex items-center text-sm text-gray-500">Datoteke, ki bodo prikazane so, Meritve, Kontrolni plani, Tehnologije ...</span>
+                <span id="project-type-0-description-1" class="mt-6 text-sm font-medium text-gray-900">1546 naloženih datotek</span>
+              </span>
+            </span>
+            <!-- Not Checked: "invisible" -->
+            <svg class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+            </svg>
+            <img src="assets/images/icons/pdf.png" class="w-10 h-10 absolute bottom-4 right-4">
+            <!--
+              Active: "border", Not Active: "border-2"
+              Checked: "border-indigo-600", Not Checked: "border-transparent"
+            -->
+            <span class="pointer-events-none absolute -inset-px rounded-lg border-2" aria-hidden="true"></span>
+          </label>
+          <!-- Active: "border-indigo-600 ring-2 ring-indigo-600", Not Active: "border-gray-300" -->
+          <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+            <input type="radio" name="project-type" value="Existing Customers" class="sr-only" aria-labelledby="project-type-1-label" aria-describedby="project-type-1-description-0 project-type-1-description-1">
+            <span class="flex flex-1">
+              <span class="flex flex-col">
+                <span id="project-type-1-label" class="block text-sm font-medium text-gray-900">Excel Datoteke</span>
+                <span id="project-type-1-description-0" class="mt-1 flex items-center text-sm text-gray-500">Datoteke, ki bodo prikazane so, Vpis izdelkov, Napake na določenih linijah ...</span>
+                <span id="project-type-1-description-1" class="mt-6 text-sm font-medium text-gray-900">150 naloženih datotek</span>
+              </span>
+            </span>
+            <!-- Not Checked: "invisible" -->
+            <svg class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+            </svg>
+            <img src="assets/images/icons/xls.png" class="w-10 h-10 absolute bottom-4 right-4">
+    
+            <!--
+              Active: "border", Not Active: "border-2"
+              Checked: "border-indigo-600", Not Checked: "border-transparent"
+            -->
+            <span class="pointer-events-none absolute -inset-px rounded-lg border-2" aria-hidden="true"></span>
+          </label>
+          <!-- Active: "border-indigo-600 ring-2 ring-indigo-600", Not Active: "border-gray-300" -->
+          <label class="relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none">
+            <input type="radio" name="project-type" value="Trial Users" class="sr-only" aria-labelledby="project-type-2-label" aria-describedby="project-type-2-description-0 project-type-2-description-1">
+            <span class="flex flex-1">
+              <span class="flex flex-col">
+                <span id="project-type-2-label" class="block text-sm font-medium text-gray-900">Slike</span>
+                <span id="project-type-2-description-0" class="mt-1 flex items-center text-sm text-gray-500">Datoteke, ki bodo prikazane za vzdrževalce, predvsem za napake na strojih ...</span>
+                <span id="project-type-2-description-1" class="mt-6 text-sm font-medium text-gray-900">25 naloženih datotek</span>
+              </span>
+            </span>
+            <!-- Not Checked: "invisible" -->
+            <svg class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+            </svg>
+            <img src="assets/images/icons/image.png" class="w-10 h-10 absolute bottom-4 right-4">
+    
+            <!--
+              Active: "border", Not Active: "border-2"
+              Checked: "border-indigo-600", Not Checked: "border-transparent"
+            -->
+            <span class="pointer-events-none absolute -inset-px rounded-lg border-2" aria-hidden="true"></span>
+          </label>
+        </div>
+      </fieldset>
+      <!-- Folder Filter START -->
+      <div class="grid grid-cols-5 gap-4">
+        <div class="flex items-left bg-indigo-200 rounded space-x-4 group hover:bg-indigo-300 cursor-pointer">
+            <div class="w-[40px] h-[40px] bg-indigo-500 rounded-l text-center text-white py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                </svg>                  
+            </div>
+            <div class="text-indigo-700 py-2">
+                Meritve
+            </div>
+        </div>
+        <div class="flex items-left bg-indigo-200 rounded space-x-4 group hover:bg-indigo-300 cursor-pointer">
+            <div class="w-[40px] h-[40px] bg-indigo-500 rounded-l text-center text-white py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                </svg>                  
+            </div>
+            <div class="text-indigo-700 py-2">
+                Kontrolni plan
+            </div>
+        </div>
+        <div class="flex items-left bg-indigo-200 rounded space-x-4 group hover:bg-indigo-300 cursor-pointer">
+            <div class="w-[40px] h-[40px] bg-indigo-500 rounded-l text-center text-white py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                </svg>                  
+            </div>
+            <div class="text-indigo-700 py-2">
+                Tehnolgije
+            </div>
+        </div>
+        <div class="flex items-left bg-indigo-200 rounded space-x-4 group hover:bg-indigo-300 cursor-pointer">
+            <div class="w-[40px] h-[40px] bg-indigo-500 rounded-l text-center text-white py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                </svg>                  
+            </div>
+            <div class="text-indigo-700 py-2">
+                Vzdrževalna dela
+            </div>
+        </div>
+        <div class="flex items-left bg-indigo-200 rounded space-x-4 group hover:bg-indigo-300 cursor-pointer">
+            <div class="w-[40px] h-[40px] bg-indigo-500 rounded-l text-center text-white py-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-auto">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
+                </svg>                  
+            </div>
+            <div class="text-indigo-700 py-2">
+                Vpis izdelkov
+            </div>
+        </div>
+
+      </div>
+      <!-- Folder Filter END -->
+      <!-- Table Recent Uploads START -->
+
+<div class="">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-gray-900">Trenutno</h1>
+      <p class="mt-2 text-sm text-gray-700">Prikaz vseh datotek, ki so bile pred kratkim naložene od vseh uporabnikov !</p>
+    </div>
+    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+      <button type="button" class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Poglej vse datoteke</button>
+    </div>
+  </div>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Naslov datoteke</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Kategorija</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Velikost</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Datum</th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                  <span class="sr-only">Edit</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 flex items-left space-x-4">
+                    <img src="assets/images/icons/pdf.png" class="w-8 h-8">
+                    <div class="py-2">
+                        FLIS/F T15 (2424)24 580/222
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Tehnologija</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5.45 MB</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    5. September 2022
+                </td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-4">
+                    <button type="button" class="rounded-full bg-sky-100 p-1 text-sky-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>                         
+                      </button>
+                      <button type="button" class="rounded-full bg-red-100 p-1 text-red-500 shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+                          
+                      </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 flex items-left space-x-4">
+                    <img src="assets/images/icons/pdf.png" class="w-8 h-8 my-2.5">
+                    <div class="py-2">
+                        <div class="font-medium">FLIS/F T15 (2424)24 580/222</div>
+                        <div class="text-xs text-thin">
+                            DN: 23005896 ŠT. Bale: 12
+                        </div> 
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Meritev / D - Linija</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">7,85 MB</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    4. Januar 2023
+                </td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-4">
+                    <button type="button" class="rounded-full bg-sky-100 p-1 text-sky-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>                         
+                      </button>
+                      <button type="button" class="rounded-full bg-red-100 p-1 text-red-500 shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+                          
+                      </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm  text-gray-900 sm:pl-6 flex items-left space-x-4">
+                    <img src="assets/images/icons/pdf.png" class="w-8 h-8 my-2.5">
+                    <div class="py-2">
+                        <div class="font-medium">FLIS/F T3 (0110)24 475/222</div>
+                        <div class="text-xs text-thin">
+                            DN: 230058965 ŠT. Bale: 50
+                        </div> 
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Meritev / E - Linija</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">7,85 MB</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    4. Januar 2023
+                </td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-4">
+                    <button type="button" class="rounded-full bg-sky-100 p-1 text-sky-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>                         
+                      </button>
+                      <button type="button" class="rounded-full bg-red-100 p-1 text-red-500 shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+                          
+                      </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 flex items-left space-x-4">
+                    <img src="assets/images/icons/xls.png" class="w-8 h-8">
+                    <div class="py-2">
+                        Vpis napak proizovdnje
+                    </div>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Vpis Napak / D - Linija <span class="font-medium">(Posodobitev)</span></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">5.45 MB</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                    5. Januar 2024
+                </td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-4">
+                    <button type="button" class="rounded-full bg-sky-100 p-1 text-sky-500 shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                          </svg>                         
+                      </button>
+                      <button type="button" class="rounded-full bg-red-100 p-1 text-red-500 shadow-sm hover:bg-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                          </svg>
+                          
+                      </button>
+                </td>
+              </tr>
+              <!-- More people... -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <!-- Table Recent Uploads END -->
+
+</div>
