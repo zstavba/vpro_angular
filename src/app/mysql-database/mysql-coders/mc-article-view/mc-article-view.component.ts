@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../../Services/article.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { Article } from '../../../dashboard/Classes/article';
 import { SqlTableCodeComponent } from '../../../dashboard/components/sql-table-code/sql-table-code.component';
 
@@ -9,14 +9,15 @@ import { SqlTableCodeComponent } from '../../../dashboard/components/sql-table-c
   standalone: true,
   imports: [
     SqlTableCodeComponent,
-    RouterLink
+    RouterLink,
+    RouterOutlet
   ],
   templateUrl: './mc-article-view.component.html',
   styleUrl: './mc-article-view.component.scss'
 })
 export class McArticleViewComponent implements OnInit {
 
-  private _routeID ?: string ;
+  public _routeID ?: string ;
 
   public Info: any;
 
@@ -34,8 +35,6 @@ export class McArticleViewComponent implements OnInit {
     this._ArticleService.getItemByCode(this._routeID).subscribe(
       response => {
         this.Info = response[0];
-        
-        //console.log(this.Info);
       }
     )
   }

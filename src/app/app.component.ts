@@ -11,6 +11,7 @@ import { WorkOrderService } from './Services/work-order.service';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ArticleService } from './Services/article.service';
 import { Article } from './dashboard/Classes/article';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ import { Article } from './dashboard/Classes/article';
     RouterOutlet, 
     UserAvatarComponent, 
     HttpClientModule, 
-    EditorModule
+    EditorModule,
+    FormsModule
 
   ],
   providers: [

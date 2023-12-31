@@ -15,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: "article/:id",
-    component: McArticleViewComponent
+    component: McArticleViewComponent,
+    loadChildren: () => import('./mc-article-view/mc-article-view.module').then(m => m.McArticleViewModule)
   },
   {
     path: "commercial",

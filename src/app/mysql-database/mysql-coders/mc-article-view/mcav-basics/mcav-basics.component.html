@@ -1,0 +1,49 @@
+<div class="space-y-6">
+    <div class="grid grid-cols-3 gap-4">
+        <div>
+            <label for="article_code" class="block text-sm font-medium leading-6 text-gray-900">Ident</label>
+            <div class="mt-2">
+              <input type="text" name="article_code" id="article_code" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.code">
+            </div>
+        </div>
+        <div>
+            <label for="article_title" class="block text-sm font-medium leading-6 text-gray-900">Naslov</label>
+            <div class="mt-2">
+              <input type="text" name="article_title" id="article_title" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.title">
+            </div>
+        </div>
+        <div class="">
+            <label for="article_traceability" class="block text-sm font-medium leading-6 text-gray-900">Vidljivost artikla</label>
+            <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+            <div class="flex items-center mt-3">
+                <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" id="article_traceability" role="switch" aria-checked="false" aria-labelledby="annual-billing-label">
+                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                    <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                  </button>
+                  <span class="ml-3 text-sm" id="annual-billing-label">
+                    <span class="font-thin text-gray-900">Nastavi vidljivost artikla</span>
+                  </span>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+        <div>
+            <label for="article_ean_code" class="block text-sm font-medium leading-6 text-gray-900">EAN Koda</label>
+            <div class="mt-2">
+              <input type="text" name="article_ean_code" id="article_ean_code" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.ean">
+            </div>
+        </div>
+        <div>
+            <label for="article_packaging_type" class="block text-sm font-medium leading-6 text-gray-900">Tip Parkiranja</label>
+            <div class="mt-2">
+              <input type="text" name="article_packaging_type" id="article_packaging_type" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.packaging_type">
+            </div>
+        </div>
+        <div>
+            <label for="article_pallete" class="block text-sm font-medium leading-6 text-gray-900">Paleta</label>
+            <div class="mt-2">
+              <input type="text" name="article_pallete" id="article_pallete" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.pallet">
+            </div>
+        </div>
+    </div>
+</div>
