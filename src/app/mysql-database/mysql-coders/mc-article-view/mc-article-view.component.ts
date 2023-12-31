@@ -19,21 +19,21 @@ export class McArticleViewComponent implements OnInit {
 
   public _routeID ?: string ;
 
-  public Info: any;
+  public Info ?: Article;
 
   constructor (private _ArticleService: ArticleService, private router: ActivatedRoute) {}
 
   ngOnInit(): void {
       this._routeID = this.router.snapshot.paramMap.get('id') as string;
       this.getInfo();
-    
+      
     }
 
 
 
   getInfo = () => {
     this._ArticleService.getItemByCode(this._routeID).subscribe(
-      response => {
+      (response: any) => {
         this.Info = response[0];
       }
     )

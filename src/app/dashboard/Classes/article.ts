@@ -10,10 +10,7 @@ export class Article {
     public manufacturer ?: string; 
     public packaging_type ?: string; 
     public pallet ?: number;
-    public stock ?: string; 
-
-    public fk_article_type_id : ArticleType = new ArticleType();
-    public fk_country_id: Country = new Country();
+    public stock : any; 
 
     constructor() {}    
 

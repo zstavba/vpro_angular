@@ -3,6 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../../../Services/article.service';
 import { FormsModule } from '@angular/forms';
 import { Article } from '../../../../dashboard/Classes/article';
+import { Observable, forkJoin, map } from 'rxjs';
+import { CountryService } from '../../../../Services/country.service';
+import { Country } from '../../../../dashboard/Classes/country';
+import { response } from 'express';
 
 @Component({
   selector: 'app-mcav-basics',
@@ -16,9 +20,15 @@ import { Article } from '../../../../dashboard/Classes/article';
 export class McavBasicsComponent implements OnInit {
 
   public _childRouteID: any;
-  public Info: Article = new Article();
+  public Info ?: Article;
 
-  constructor (private router: ActivatedRoute, private _ArticleService: ArticleService) {}
+  public mergedDataList : { article: Article, country: Country }[] = [];
+
+  constructor (
+    private router: ActivatedRoute, 
+    private _ArticleService: ArticleService, 
+    private _CountryService: CountryService
+  ) {}
 
   ngOnInit(): void {
       this.router.parent?.params.subscribe(
@@ -30,13 +40,13 @@ export class McavBasicsComponent implements OnInit {
       this.getInfo()
   }
 
-  getInfo = () => {
+  getInfo = ()=> {
     this._ArticleService.getItemByCode(this._childRouteID).subscribe(
-      response => {
-        this.Info = response[0];
-        console.log(this.Info)
+      (response: any) => {
+          this.Info = response[0]
       }
     )
+    //console.log(this.Info);
   }
 
 }

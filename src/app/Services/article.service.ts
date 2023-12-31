@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Article } from '../dashboard/Classes/article';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ArticleService {
     return this.http.get<Article[]>(`${this.http_link}/article/list`);
   }
 
-  getItemByCode = (code: number | string | any) : Observable<any> => {
-    return this.http.get<any>(`${this.http_link}/articles/info/basic/${code}`);
+  getItemByCode = (code: any) : Observable<Article> => {
+    return this.http.get<Article>(`${this.http_link}/articles/info/basic/${code}`);
   }
 }

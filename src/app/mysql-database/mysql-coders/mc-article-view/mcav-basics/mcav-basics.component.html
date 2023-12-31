@@ -42,8 +42,16 @@
         <div>
             <label for="article_pallete" class="block text-sm font-medium leading-6 text-gray-900">Paleta</label>
             <div class="mt-2">
-              <input type="text" name="article_pallete" id="article_pallete" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.pallet">
+              <input type="text" name="article_pallete" id="article_pallete" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="">
             </div>
         </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4">
+      <div>
+          <label for="article_stock" class="block text-sm font-medium leading-6 text-gray-900">Zaloga</label>
+          <div class="mt-2">
+              <input type="text" name="article_stock" id="article_stock" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.stock">
+          </div>
+      </div>
     </div>
 </div>

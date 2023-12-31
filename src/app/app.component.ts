@@ -12,6 +12,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { ArticleService } from './Services/article.service';
 import { Article } from './dashboard/Classes/article';
 import { FormsModule } from '@angular/forms';
+import { CountryService } from './Services/country.service';
+import { Country } from './dashboard/Classes/country';
 
 @Component({
   selector: 'app-root',
@@ -32,7 +34,9 @@ import { FormsModule } from '@angular/forms';
     MeasurementsService,
     WorkOrderService,
     ArticleService,
-    Article
+    Article,
+    CountryService,
+    Country
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
