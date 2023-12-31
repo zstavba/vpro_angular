@@ -10,6 +10,7 @@ import { MeasurementsService } from './Services/measurements.service';
 import { WorkOrderService } from './Services/work-order.service';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ArticleService } from './Services/article.service';
+import { Article } from './dashboard/Classes/article';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,8 @@ import { ArticleService } from './Services/article.service';
     UserService,
     MeasurementsService,
     WorkOrderService,
-    ArticleService
+    ArticleService,
+    Article
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

@@ -6,11 +6,16 @@ import { McCommercialComponent } from './mc-commercial/mc-commercial.component';
 import { McProductionComponent } from './mc-production/mc-production.component';
 import { McBasicsComponent } from './mc-basics/mc-basics.component';
 import { McUsersComponent } from './mc-users/mc-users.component';
+import { McArticleViewComponent } from './mc-article-view/mc-article-view.component';
 
 const routes: Routes = [
   {
     path: "",
     component: McArticlesComponent
+  },
+  {
+    path: "article/:id",
+    component: McArticleViewComponent
   },
   {
     path: "commercial",

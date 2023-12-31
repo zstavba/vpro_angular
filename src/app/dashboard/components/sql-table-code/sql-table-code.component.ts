@@ -10,7 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class SqlTableCodeComponent implements OnInit {
 
   @Input() item_name ?: string;
-  @Input() item_length ?: string; 
+  @Input() item_length ?: string | number; 
+  @Input() where_statment ?: boolean = false;
+  @Input() where_statment_query ?: string;  
 
   ngOnInit(): void {
     
