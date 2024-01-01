@@ -14,6 +14,8 @@ import { Article } from './dashboard/Classes/article';
 import { FormsModule } from '@angular/forms';
 import { CountryService } from './Services/country.service';
 import { Country } from './dashboard/Classes/country';
+import { ProductionService } from './Services/production.service';
+import { BankService } from './Services/bank.service';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +38,9 @@ import { Country } from './dashboard/Classes/country';
     ArticleService,
     Article,
     CountryService,
-    Country
+    Country,
+    ProductionService,
+    BankService
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

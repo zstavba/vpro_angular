@@ -19,4 +19,8 @@ export class ArticleService {
   getItemByCode = (code: any) : Observable<Article> => {
     return this.http.get<Article>(`${this.http_link}/articles/info/basic/${code}`);
   }
+
+  getArticleType = (): Observable<any> => {
+    return this.http.get<any>(`${this.http_link}/article/types/list`)
+  }
 }

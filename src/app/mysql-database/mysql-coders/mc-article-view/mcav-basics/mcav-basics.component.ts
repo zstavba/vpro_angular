@@ -44,9 +44,10 @@ export class McavBasicsComponent implements OnInit {
     this._ArticleService.getItemByCode(this._childRouteID).subscribe(
       (response: any) => {
           this.Info = response[0]
-      }
+          console.log(this.Info);
+
+        }
     )
-    //console.log(this.Info);
   }
 
 }
