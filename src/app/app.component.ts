@@ -18,6 +18,7 @@ import { ProductionService } from './Services/production.service';
 import { BankService } from './Services/bank.service';
 import { MeasurementUnits } from './dashboard/Classes/measurement-units';
 import { AlternativeCiphers } from './dashboard/Classes/alternative-ciphers';
+import { CustomTarrifs } from './dashboard/Classes/custom-tarrifs';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,8 @@ import { AlternativeCiphers } from './dashboard/Classes/alternative-ciphers';
     Country,
     ProductionService,
     BankService,
-    AlternativeCiphers
+    AlternativeCiphers,
+    CustomTarrifs
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

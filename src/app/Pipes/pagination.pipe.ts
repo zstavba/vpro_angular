@@ -6,9 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PaginationPipe implements PipeTransform {
 
-  transform(value: any[], page: any,): any {
-      //console.log(value, page, ...value.slice( 12*(page-1) , 12*(page) ));
-      return [ ...value.slice( 11*(page) , 11*(page+1)  )]
+  transform(value: any[], page: number, pageSize: number): any {
+    const startIndex = (page - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    return value.slice(startIndex, endIndex);
   }
 
 }

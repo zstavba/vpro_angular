@@ -13,6 +13,7 @@ export class SqlTableCodeComponent implements OnInit {
   @Input() item_length ?: string | number; 
   @Input() where_statment ?: boolean = false;
   @Input() where_statment_query ?: string;  
+  @Input() response_time: any; 
 
   ngOnInit(): void {
     

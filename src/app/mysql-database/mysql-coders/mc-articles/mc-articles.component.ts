@@ -15,6 +15,7 @@ import { MeasurementsService } from '../../../Services/measurements.service';
 import { EventEmitter } from 'stream';
 import { SqlTableComponent } from '../../../dashboard/components/sql-table/sql-table.component';
 import { AlternativeCiphers } from '../../../dashboard/Classes/alternative-ciphers';
+import { CustomTarrifs } from '../../../dashboard/Classes/custom-tarrifs';
 
 @Component({
   selector: 'app-mc-articles',
@@ -41,7 +42,8 @@ export class McArticlesComponent implements OnInit {
   public selectedRows: boolean[] = [];
   public _ArticleID ?: number | string;
   public ArticleObject: Article = new Article(); 
-
+  public responseTime: any; 
+  
 
   // Array List of data 
   public DataList: Array<any> = [];
@@ -64,11 +66,16 @@ export class McArticlesComponent implements OnInit {
   }
 
    get = () => {
+    let startTime = performance.now();
      this.ArticleService.get().subscribe(
        response => {
         this.DataList =  response;
         this.cdr.detectChanges();
-         //console.log(this.ArticleList)
+        let endTime = performance.now();
+
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
+
+
        }
    )
   }
@@ -86,11 +93,16 @@ export class McArticlesComponent implements OnInit {
   }
 
   getAlternatives = () => {
+    let startTime = performance.now();
     this.ProductionService.getAlternatives().subscribe(
       response => {
         //console.log(response);
         this.DataList =  response.alternatives_list;
         this.cdr.detectChanges();
+        let endTime = performance.now();
+
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
+
         //console.log(this.AlternativesList)
       }
     );
@@ -100,26 +112,31 @@ export class McArticlesComponent implements OnInit {
       switch(table_name) {
         case 'articles':
             let A = Article.getKeys();
-            //console.log(A)
-            this.DataList = [];
             this.ObjectKeys.push(...A);
           break;
         case 'alternatives':
             let AK = AlternativeCiphers.getKeys();
-            this.DataList = [];
             this.ObjectKeys.push(...AK)
-            console.log(this.ObjectKeys);
+          break;
+        case 'costum_tariffs':
+            let CT = CustomTarrifs.getKeys();
+            this.ObjectKeys.push(...CT);
           break;
       }
 
   }
 
   getCustomTariffs = () => {
+    let startTime = performance.now();
     this.CountryService.getCostumsTarrifs().subscribe(
       response => {
         this.DataList =  response.custom_tariffs_list;
         this.cdr.detectChanges();
-        //console.log(this.CustomTariffsList);
+        let endTime = performance.now();
+
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
+
+
       }
     )
   }
@@ -184,39 +201,41 @@ export class McArticlesComponent implements OnInit {
           this.setArrayToZero();
           switch(item_name){
             case 'Vsi Artikli':
-              this.selector_name = 'articles' 
-              this.setTableKeys('articles');
-              this.get();
+                this.selector_name = 'articles' 
+                this.setTableKeys('articles');
+                this.get();
 
               break;
             case 'Alternativne Šifre':
-              this.selector_name = 'alternatives' 
-              this.setTableKeys('alternatives');
-              this.getAlternatives(); 
+                this.selector_name = 'alternatives' 
+                this.setTableKeys('alternatives');
+                this.getAlternatives(); 
 
               break;
             case 'Nabava': 
-              this.selector_name = 'shopping'
+                this.selector_name = 'shopping'
               break;
             case 'Carinske tarife':
-              this.selector_name = 'costum_tariffs'
+                this.selector_name = 'costum_tariffs'
+                this.setTableKeys('costum_tariffs');
+                this.getCustomTariffs();
               break;
             case 'Grupe DDV':
-              this.selector_name = 'taxes'
+                this.selector_name = 'taxes'
               break;
             case 'Izvedbe':
-              this.selector_name = 'performance'
+                this.selector_name = 'performance'
               break;
             case 'Merske Enote':
-              this.selector_name = 'units'
+                this.selector_name = 'units'
               break;
             case 'Skupine':
-              this.selector_name = 'groups'
+                this.selector_name = 'groups'
               break;
-              case 'Tipi Artiklov':
-              this.selector_name = 'article_type'
+            case 'Tipi Artiklov':
+                this.selector_name = 'article_type'
               break;
-              case 'delete_items':
+            case 'delete_items':
               default:
  
                 break;

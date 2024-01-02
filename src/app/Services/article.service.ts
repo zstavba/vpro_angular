@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { Article } from '../dashboard/Classes/article';
 
 @Injectable({
@@ -13,6 +13,8 @@ export class ArticleService {
   constructor(private http: HttpClient) { }
 
   get = (): Observable<any> => {
+    const startTime = performance.now();
+
     return this.http.get<any>(`${this.http_link}/article/list`);
   }
 

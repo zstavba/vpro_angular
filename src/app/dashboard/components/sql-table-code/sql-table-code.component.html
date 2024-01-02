@@ -7,7 +7,7 @@
            @if(item_length == 0){
             Prikazani podatki za kodo:
            } @else {
-            Prikazanih 0-12 od ({{ item_length }} rezultatov)
+            Prikazanih 0-10 od ({{ item_length }} rezultatov | <span class="font-medium">Za prikaz podatkov je potrebovalo:  {{ response_time }} sekunde</span>)
            }
         </div>              
     </div>
@@ -23,8 +23,6 @@
             <span class="text-sky-700">`{{ where_statment_query }}`</span>
 
         }
-
-
     </div>
     <div class="flex items-left p-2 bg-indigo-50 rounded-b grid grid-cols-2 gap-4">
         <div class="py-1">

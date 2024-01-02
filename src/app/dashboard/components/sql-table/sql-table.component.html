@@ -5,21 +5,53 @@
           <table class="min-w-full divide-y divide-gray-300">
                 <thead class="bg-gray-50">
                     <tr>
+                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      </th>
                       @for(key of dataKeys; track key) {
                           <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">{{ key }}</th>
                       }
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
-                    @for(item of data; track data){
-                      <tr>
+                    @for(item of (data | pagination: currentPage:10); track data){
+                      <tr [class.highlight]="selectedRows[item.id]">
+                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                          <input id="comments" aria-describedby="comments-description" name="comments" (change)="selectRow(item)"  type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                        </th>
                           @for(keyItem of dataKeys; track keyItem){
                               <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-thin text-gray-900 sm:pl-6">
-                                    @if(item[keyItem] == null || item[keyItem] == undefined || item[keyItem] == '') {
-                                        <span class="inline-flex text-xs items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Podatek ni podan ! </span>
+                                @if(item && item.hasOwnProperty(keyItem)) {
+                                  @if(item[keyItem] == null || item[keyItem] == undefined || item[keyItem] == ''){
+                                    <span class="inline-flex text-xs items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                                      Podatek ni podan!
+                                    </span>
+                                  } @else {
+                                    @if(keyItem != 'active'){
+                                      {{ item[keyItem]  }}
                                     } @else {
-                                        {{ item[keyItem] }}
+                                      @if(item[keyItem] == true){
+                                        <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                          </svg>                                        
+                                        </span>
+                                      } @else {
+                                        <span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                          </svg>
+                                        </span> 
+                                      }
                                     }
+                                  }
+ 
+                   
+
+                                } @else {
+                                  Elemen ne obstaja
+                                }
+                              
                               </td>
                           }
                       </tr>
