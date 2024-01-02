@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="w-full p-2"></div>
-    <sql-table-code item_length="0"item_name="artikli" ></sql-table-code>
+    <sql-table-code item_length="0" [item_name]="selector_name" ></sql-table-code>
     <div class="mt-8 flow-root">
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
@@ -39,54 +39,53 @@
                 </div>
                 <div class="col-span-2 space-x-4 text-right pr-[2rem]">
                   <div class="tooltip tooltip-bottom" data-tip="Vsi Artikli">
-                    <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                    <button type="button" (click)="toggleSelectedItem('Vsi Artikli')"   class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                         <img src="assets/images/icons/more.png" alt="" class="w-6 h-6">
                     </button>
                   </div>
-                  <div class="tooltip tooltip-bottom" data-tip="Alternativne šifre ">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                  <div class="tooltip tooltip-bottom" data-tip="Alternativne Šifre">
+                      <button type="button" (click)="toggleSelectedItem('Alternativne Šifre')"  class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/coders.png" alt="" class="w-6 h-6">
                       </button>
                     </div>
                     <div class="tooltip tooltip-bottom" data-tip="Nabava">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button" (click)="toggleSelectedItem('Nabava')" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/costumer-order.png" alt="" class="w-6 h-6">
                       </button>
                     </div>
                     <div class="tooltip tooltip-bottom" data-tip="Carinske tarife">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button" (click)="toggleSelectedItem('Carinske tarife')" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/cash-payment.png" alt="" class="w-6 h-6">
                       </button>
                     </div>
                     <div class="tooltip tooltip-bottom" data-tip="Grupe DDV">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button"  (click)="toggleSelectedItem('Grupe DDV')" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/price-change.png" alt="" class="w-6 h-6">
                       </button>
                     </div>  
                     <div class="tooltip tooltip-bottom" data-tip="Izvedbe">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button" (click)="toggleSelectedItem('Izvedbe')"  class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/performance.png" alt="" class="w-6 h-6">
                       </button>
                     </div>  
                     <div class="tooltip tooltip-bottom" data-tip="Merske enote">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button" (click)="toggleSelectedItem('Merske Enote')"  class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/m_units.png" alt="" class="w-6 h-6">
                       </button>
                     </div>     
                     <div class="tooltip tooltip-bottom" data-tip="Skupine">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button" (click)="toggleSelectedItem('Skupine')"  class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/purchasing.png" alt="" class="w-6 h-6">
                       </button>
                     </div>  
                     <div class="tooltip tooltip-bottom" data-tip="Tipi Artiklov">
-                      <button type="button" class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
+                      <button type="button" (click)="toggleSelectedItem('Tipi Artiklov')"  class="rounded bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-600 shadow-sm hover:bg-slate-100">
                           <img src="assets/images/icons/adaptive.png" alt="" class="w-6 h-6">
                       </button>
-                    </div>                 
-
+                    </div>        
                 </div>
             </div>
-
+            <sql-table [data]="DataList" [dataKeys]="ObjectKeys"></sql-table>
             <system-pagination></system-pagination>
           </div>
         </div>

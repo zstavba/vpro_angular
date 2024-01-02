@@ -12,8 +12,8 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  get = (): Observable<Article[]> => {
-    return this.http.get<Article[]>(`${this.http_link}/article/list`);
+  get = (): Observable<any> => {
+    return this.http.get<any>(`${this.http_link}/article/list`);
   }
 
   getItemByCode = (code: any) : Observable<Article> => {

@@ -1,1 +1,32 @@
-SQl Table VIEW
+<div class="flow-root bg-white">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full align-middle sm:px-6 lg:px-8">
+        <div class="overflow-hidden ">
+          <table class="min-w-full divide-y divide-gray-300">
+                <thead class="bg-gray-50">
+                    <tr>
+                      @for(key of dataKeys; track key) {
+                          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">{{ key }}</th>
+                      }
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 bg-white">
+                    @for(item of data; track data){
+                      <tr>
+                          @for(keyItem of dataKeys; track keyItem){
+                              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-thin text-gray-900 sm:pl-6">
+                                    @if(item[keyItem] == null || item[keyItem] == undefined || item[keyItem] == '') {
+                                        <span class="inline-flex text-xs items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">Podatek ni podan ! </span>
+                                    } @else {
+                                        {{ item[keyItem] }}
+                                    }
+                              </td>
+                          }
+                      </tr>
+                    }
+                </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angular/core';
+import { PaginationPipe } from '../../../Pipes/pagination.pipe';
 
 @Component({
-  selector: 'app-sql-table',
+  selector: 'sql-table',
   standalone: true,
-  imports: [],
+  imports: [
+    PaginationPipe
+  ],
   templateUrl: './sql-table.component.html',
-  styleUrl: './sql-table.component.scss'
+  styleUrl: './sql-table.component.scss',
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SqlTableComponent  implements OnInit {
+
+  @Input() data: Array<any> = [];
+  @Input() dataKeys: Array<any> = [];
+
 
   ngOnInit(): void {
     
   }
+
+
 
 }

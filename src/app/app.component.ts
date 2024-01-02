@@ -16,6 +16,8 @@ import { CountryService } from './Services/country.service';
 import { Country } from './dashboard/Classes/country';
 import { ProductionService } from './Services/production.service';
 import { BankService } from './Services/bank.service';
+import { MeasurementUnits } from './dashboard/Classes/measurement-units';
+import { AlternativeCiphers } from './dashboard/Classes/alternative-ciphers';
 
 @Component({
   selector: 'app-root',
@@ -34,13 +36,15 @@ import { BankService } from './Services/bank.service';
     InboxService,
     UserService,
     MeasurementsService,
+    MeasurementUnits,
     WorkOrderService,
     ArticleService,
     Article,
     CountryService,
     Country,
     ProductionService,
-    BankService
+    BankService,
+    AlternativeCiphers
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
