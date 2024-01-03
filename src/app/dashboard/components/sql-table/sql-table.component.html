@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
-                    @for(item of (data | pagination: currentPage:10); track data){
+                    @for(item of (data |  paginate: { itemsPerPage: 10,  currentPage: p, totalItems: data.length }); track data){
                       <tr [class.highlight]="selectedRows[item.id]">
                         <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                           <input id="comments" aria-describedby="comments-description" name="comments" (change)="selectRow(item)"  type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
@@ -59,6 +59,8 @@
                 </tbody>
           </table>
         </div>
+        <system-pagination (pageChange)="p = $event" [data]="data"  ></system-pagination>
+
       </div>
     </div>
   </div>

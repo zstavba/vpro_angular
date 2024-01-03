@@ -16,6 +16,7 @@ import { EventEmitter } from 'stream';
 import { SqlTableComponent } from '../../../dashboard/components/sql-table/sql-table.component';
 import { AlternativeCiphers } from '../../../dashboard/Classes/alternative-ciphers';
 import { CustomTarrifs } from '../../../dashboard/Classes/custom-tarrifs';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-mc-articles',
@@ -25,7 +26,8 @@ import { CustomTarrifs } from '../../../dashboard/Classes/custom-tarrifs';
     SystemPaginationComponent,
     SqlTableCodeComponent,
     RouterLink,
-    SqlTableComponent
+    SqlTableComponent,
+    NgxPaginationModule
   ],
   templateUrl: './mc-articles.component.html',
   styleUrl: './mc-articles.component.scss'
@@ -35,8 +37,8 @@ export class McArticlesComponent implements OnInit {
 
   public selector_name: string = 'articles' ;
   public ItemsClicked: number = 0;
-
-
+  p: number = 1;
+  
   // Parameters List
   public selectedID: number = 0;
   public selectedRows: boolean[] = [];

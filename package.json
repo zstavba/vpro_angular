@@ -28,6 +28,7 @@
     "express": "^4.18.2",
     "font-awesome": "^4.7.0",
     "jquery": "^3.7.1",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.8.0",
     "tinymce": "^6.8.2",
     "tslib": "^2.3.0",
