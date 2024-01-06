@@ -15,4 +15,5 @@ export class ProductionService {
       return this.http.get<any>(`${this.http_link}/production/alternatives`);
   }
 
+
 }

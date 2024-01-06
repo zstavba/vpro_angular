@@ -12,8 +12,8 @@ export class MeasurementsService {
 
   constructor(private http: HttpClient) { }
 
-  get = (): Observable<any> => {
-    return this.http.get<any>(`${this.http_link}/units/list`);
+  get = (): Observable<MeasurementUnits[]> => {
+    return this.http.get<MeasurementUnits[]>(`${this.http_link}/units/list`);
   }
 
 

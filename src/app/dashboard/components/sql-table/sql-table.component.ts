@@ -3,6 +3,7 @@ import { PaginationPipe } from '../../../Pipes/pagination.pipe';
 import e from 'express';
 import { SystemPaginationComponent } from '../system-pagination/system-pagination.component';
 import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
+import { User } from '../../Classes/user';
 
 @Component({
   selector: 'sql-table',
@@ -28,6 +29,7 @@ export class SqlTableComponent  implements OnInit {
 
 
   ngOnInit(): void {
+    //console.log(this.data)
 
   }
 
@@ -37,6 +39,7 @@ export class SqlTableComponent  implements OnInit {
     this.selectedRows[ITEM.id] = !this.selectedRows[ITEM.id];
     this._ArticleID = ITEM.code;
  }
+
 
 
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Tax } from '../dashboard/Classes/tax';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,13 @@ export class BankService {
 
   constructor(private http: HttpClient) { }
 
-  getTax = (): Observable<any> => {
-    return this.http.get<any>(`${this.http_link}/banks/tax/list`)
+  getTax = (): Observable<Tax[]> => {
+    return this.http.get<Tax[]>(`${this.http_link}/banks/tax/list`)
+  }
+
+
+  getSectors = (): Observable<any> => {
+    return this.http.get<any>(`${this.http_link}/banks/sectors/list`)
   }
 
 }

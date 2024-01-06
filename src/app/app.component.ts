@@ -19,6 +19,24 @@ import { BankService } from './Services/bank.service';
 import { MeasurementUnits } from './dashboard/Classes/measurement-units';
 import { AlternativeCiphers } from './dashboard/Classes/alternative-ciphers';
 import { CustomTarrifs } from './dashboard/Classes/custom-tarrifs';
+import { Sectors } from './dashboard/Classes/sectors';
+import { User } from './dashboard/Classes/user';
+import { UserInformation } from './dashboard/Classes/user-information';
+import { ZipCode } from './dashboard/Classes/zip-code';
+import { Language } from './dashboard/Classes/language';
+import { Classification } from './dashboard/Classes/classification';
+import { ClassificationsService } from './Services/classifications.service';
+import { WarehouseCategories } from './dashboard/Classes/warehouse-categories';
+import { WarehouseUnits } from './dashboard/Classes/warehouse-units';
+import { WarehouseLocation } from './dashboard/Classes/warehouse-location';
+import { CostCities } from './dashboard/Classes/cost-cities';
+import { OrganizationalUnits } from './dashboard/Classes/organizational-units';
+import { Areas } from './dashboard/Classes/areas';
+import { WorkCenter } from './dashboard/Classes/work-center';
+import { UpnCodes } from './dashboard/Classes/upn-codes';
+import { ControlPlan } from './dashboard/Classes/control-plan';
+import { ArticleBasics } from './dashboard/Classes/article-basics';
+import { GroupService } from './Services/group.service';
 
 @Component({
   selector: 'app-root',
@@ -41,12 +59,30 @@ import { CustomTarrifs } from './dashboard/Classes/custom-tarrifs';
     WorkOrderService,
     ArticleService,
     Article,
+    ArticleBasics,
     CountryService,
     Country,
     ProductionService,
     BankService,
     AlternativeCiphers,
-    CustomTarrifs
+    CustomTarrifs,
+    CostCities,
+    Sectors,
+    User,
+    UserInformation,
+    ZipCode,
+    Language,
+    Classification,
+    ClassificationsService,
+    WarehouseCategories,
+    WarehouseUnits,
+    WarehouseLocation,
+    OrganizationalUnits,
+    Areas,
+    WorkCenter,
+    UpnCodes,
+    ControlPlan,
+    GroupService
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

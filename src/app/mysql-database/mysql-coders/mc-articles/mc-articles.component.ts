@@ -17,6 +17,13 @@ import { SqlTableComponent } from '../../../dashboard/components/sql-table/sql-t
 import { AlternativeCiphers } from '../../../dashboard/Classes/alternative-ciphers';
 import { CustomTarrifs } from '../../../dashboard/Classes/custom-tarrifs';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { Tax } from '../../../dashboard/Classes/tax';
+import { GroupType } from '../../../dashboard/Classes/group-type';
+import { resolveNaptr } from 'dns';
+import { Sectors } from '../../../dashboard/Classes/sectors';
+import { MeasurementUnits } from '../../../dashboard/Classes/measurement-units';
+import { GroupService } from '../../../Services/group.service';
+import { ArticleType } from '../../../dashboard/Classes/article-type';
 
 @Component({
   selector: 'app-mc-articles',
@@ -38,7 +45,7 @@ export class McArticlesComponent implements OnInit {
   public selector_name: string = 'articles' ;
   public ItemsClicked: number = 0;
   p: number = 1;
-  
+
   // Parameters List
   public selectedID: number = 0;
   public selectedRows: boolean[] = [];
@@ -58,12 +65,15 @@ export class McArticlesComponent implements OnInit {
     private CountryService: CountryService,
     private BankService: BankService ,
     private MuService: MeasurementsService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private GroupService: GroupService
   ) {}
 
 
   ngOnInit(): void {
       //this.get();
+      //this.getSectors();
+    
 
   }
 
@@ -75,7 +85,6 @@ export class McArticlesComponent implements OnInit {
         this.cdr.detectChanges();
         let endTime = performance.now();
 
-        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
 
 
        }
@@ -85,10 +94,17 @@ export class McArticlesComponent implements OnInit {
 
 
   getArticleTypeList = () => {
+    let startTIme = performance.now();
     this.ArticleService.getArticleType().subscribe(
       response => {
-        this.DataList = response.article_type_list;
+        this.DataList = response;
         this.cdr.detectChanges();
+
+        let endTime = performance.now();
+        this.responseTime = ((endTime - startTIme) / 1000).toFixed(2);
+
+        console.log(this.DataList);
+
         //console.log(this.ArticleTypeList)
       }
     )
@@ -124,6 +140,27 @@ export class McArticlesComponent implements OnInit {
             let CT = CustomTarrifs.getKeys();
             this.ObjectKeys.push(...CT);
           break;
+
+        case 'tax':
+          let tax = Tax.getKeys();
+          this.ObjectKeys.push(...tax);
+          break;
+        case 'sectors': 
+            let SE = Sectors.getKeys();
+            this.ObjectKeys.push(...SE);
+          break;
+        case 'meassurment_units':
+            let MU = MeasurementUnits.getKeys();
+            this.ObjectKeys.push(...MU);
+          break;
+        case 'groups':
+            let GROUP = GroupType.getKeys();
+            this.ObjectKeys.push(...GROUP);
+          break;
+        case 'article_types':
+            let AT = ArticleType.getKeys();
+            this.ObjectKeys.push(...AT);
+          break;
       }
 
   }
@@ -132,13 +169,12 @@ export class McArticlesComponent implements OnInit {
     let startTime = performance.now();
     this.CountryService.getCostumsTarrifs().subscribe(
       response => {
-        this.DataList =  response.custom_tariffs_list;
+        this.DataList =  response;
         this.cdr.detectChanges();
         let endTime = performance.now();
-
         this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
-
-
+     
+        
       }
     )
   }
@@ -146,23 +182,53 @@ export class McArticlesComponent implements OnInit {
   getTax = () => {
     this.BankService.getTax().subscribe(
       response => {
-        this.DataList =  response.ddv_list;
+        this.DataList =  response;
+        console.log(this.DataList)
         this.cdr.detectChanges();
-        //console.log(this.BankTaxList);
       }
     )
   }
 
   getMu = () => {
+    let startTime = performance.now();
     this.MuService.get().subscribe(
       response => {
         this.DataList =  response;
+        let endTime = performance.now();
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
+        console.log(this.DataList);
         this.cdr.detectChanges();
-        //console.log(this.MuList)
       }
     )
   }
 
+
+  getSectors = () => {
+
+    let startTime = performance.now();
+    this.BankService.getSectors().subscribe(
+      response => {
+        this.DataList = response.sectors_list;
+
+        let endTime = performance.now();
+
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
+        //console.log(response);
+
+      }
+    );
+  }
+
+  getGroup = () => {
+    let startTime = performance.now();
+    this.GroupService.get().subscribe(
+      response => {
+        this.DataList = response;
+        let endTime = performance.now();
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
+      }
+    )
+  }
 
   getItemById = (): void  => {
     try {
@@ -224,18 +290,29 @@ export class McArticlesComponent implements OnInit {
               break;
             case 'Grupe DDV':
                 this.selector_name = 'taxes'
+                this.setTableKeys('tax');
+                this.getTax();
               break;
             case 'Izvedbe':
-                this.selector_name = 'performance'
+                this.selector_name = 'sectors';
+                this.setTableKeys('sectors');
+                this.getSectors();
               break;
             case 'Merske Enote':
-                this.selector_name = 'units'
+                this.selector_name = 'meassurment_units';
+                this.setTableKeys('meassurment_units');
+                this.getMu();
               break;
             case 'Skupine':
                 this.selector_name = 'groups'
+                this.setTableKeys('groups');
+                this.getGroup();
+                
               break;
             case 'Tipi Artiklov':
-                this.selector_name = 'article_type'
+                this.selector_name = 'article_types';
+                this.setTableKeys('article_types');
+                this.getArticleTypeList();
               break;
             case 'delete_items':
               default:

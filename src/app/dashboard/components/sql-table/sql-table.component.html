@@ -2,31 +2,66 @@
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full align-middle sm:px-6 lg:px-8">
         <div class="overflow-hidden ">
-          <table class="min-w-full divide-y divide-gray-300">
-                <thead class="bg-gray-50">
-                    <tr>
-                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                        <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                      </th>
-                      @for(key of dataKeys; track key) {
+          @if(data.length <= 0){
+            <div class="rounded-md bg-sky-50 p-4">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <svg class="h-5 w-5 text-sky-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <div class="ml-3">
+                  <h3 class="text-sm font-medium text-sky-800">Sistemske informacije </h3>
+                  <div class="mt-2 text-sm text-sky-700">
+                    <p>Seznam podatkov je trenutno prazen !</p>
+                  </div>
+                </div>
+              </div>
+            </div>                       
+          } @else {
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                  <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                      <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                    </th>
+                    @for(key of dataKeys; track key) {
+                        @if(key == 'fk_user_id'){ 
+                          <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">created_by</th>
+                        }@else {
                           <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">{{ key }}</th>
-                      }
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200 bg-white">
-                    @for(item of (data |  paginate: { itemsPerPage: 10,  currentPage: p, totalItems: data.length }); track data){
-                      <tr [class.highlight]="selectedRows[item.id]">
-                        <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                          <input id="comments" aria-describedby="comments-description" name="comments" (change)="selectRow(item)"  type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
-                        </th>
-                          @for(keyItem of dataKeys; track keyItem){
-                              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-thin text-gray-900 sm:pl-6">
-                                @if(item && item.hasOwnProperty(keyItem)) {
-                                  @if(item[keyItem] == null || item[keyItem] == undefined || item[keyItem] == ''){
-                                    <span class="inline-flex text-xs items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
-                                      Podatek ni podan!
-                                    </span>
-                                  } @else {
+                        }
+                    }
+                  </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 bg-white">
+                  @for(item of (data |  paginate: { itemsPerPage: 10,  currentPage: p, totalItems: data.length }); track data){
+                    <tr [class.highlight]="selectedRows[item.id]">
+                      <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
+                        <input id="comments" aria-describedby="comments-description" name="comments" (change)="selectRow(item)"  type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+                      </th>
+                        @for(keyItem of dataKeys; track keyItem){
+                            <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-thin text-gray-900 sm:pl-6">
+                              @if(item && item.hasOwnProperty(keyItem)) {
+                                @if(item[keyItem] == null || item[keyItem] == undefined || item[keyItem] == '' ) {
+                                  <span class="inline-flex text-xs items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">
+                                    Podatek ni podan!
+                                  </span>
+                                } @else {
+
+                                  @if(keyItem == 'fk_user_id' || keyItem == 'firstName' || keyItem == 'lastName'){
+                                    <div class="group block flex-shrink-0">
+                                      <div class="flex items-center">
+                                        <div>
+                                          <img class="inline-block h-9 w-9 rounded-full" src="assets/images/avatar.jpg" alt="">
+                                        </div>
+                                        <div class="ml-3">
+                                          <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{ item[keyItem]?.firstName }} {{ item[keyItem]?.lastName }}</p>
+                                          <p class="text-xs font-medium text-gray-500 group-hover:text-gray-700">{{ item[keyItem]?.email }}</p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  } @else{
                                     @if(keyItem != 'active'){
                                       {{ item[keyItem]  }}
                                     } @else {
@@ -45,22 +80,19 @@
                                       }
                                     }
                                   }
- 
-                   
-
-                                } @else {
-                                  Elemen ne obstaja
                                 }
-                              
-                              </td>
-                          }
-                      </tr>
-                    }
-                </tbody>
-          </table>
+                              } @else {
+                                Elemen ne obstaja
+                              }
+                            </td>
+                        }
+                    </tr>
+                  }
+              </tbody>
+        </table>
+          }
         </div>
         <system-pagination (pageChange)="p = $event" [data]="data"  ></system-pagination>
-
       </div>
     </div>
   </div>
