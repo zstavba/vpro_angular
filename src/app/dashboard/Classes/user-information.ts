@@ -13,7 +13,7 @@ enum UserType {
 export class UserInformation {
 
     public id: number = 0;
-    public fk_user_id: User = new User();
+    public user: User = new User();
     public fk_country_id: Country = new Country();
     public fk_zip_cod: ZipCode =  new ZipCode();
     public emsho: string = '';

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { PaginationPipe } from '../../../Pipes/pagination.pipe';
 import e from 'express';
 import { SystemPaginationComponent } from '../system-pagination/system-pagination.component';
@@ -26,6 +26,9 @@ export class SqlTableComponent  implements OnInit {
   public selectedRows: boolean[] = [];
   public _ArticleID ?: number | string;
 
+  @Output() ID = new EventEmitter();
+
+  //@Input() routeID: number = 0;
 
 
   ngOnInit(): void {
@@ -36,6 +39,7 @@ export class SqlTableComponent  implements OnInit {
   // Function for selecting, an item from MySQL table, and able to edit data based on table name.  
   selectRow = (ITEM: any) => {
     this.selectedID = ITEM.CODE;
+    this.ID.emit(ITEM);
     this.selectedRows[ITEM.id] = !this.selectedRows[ITEM.id];
     this._ArticleID = ITEM.code;
  }

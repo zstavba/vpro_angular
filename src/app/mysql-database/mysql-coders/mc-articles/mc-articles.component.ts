@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { ChangeDetectorRef, Component, OnInit, Output } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ArticleService } from '../../../Services/article.service';
 import { PaginationPipe } from '../../../Pipes/pagination.pipe';
 import { SystemPaginationComponent } from '../../../dashboard/components/system-pagination/system-pagination.component';
@@ -39,7 +39,9 @@ import { ArticleType } from '../../../dashboard/Classes/article-type';
   templateUrl: './mc-articles.component.html',
   styleUrl: './mc-articles.component.scss'
 })
-export class McArticlesComponent implements OnInit {
+export class McArticlesComponent implements OnInit, AfterViewInit {
+
+  @ViewChild(SqlTableComponent) sql_component!: SqlTableComponent;
 
 
   public selector_name: string = 'articles' ;
@@ -49,7 +51,7 @@ export class McArticlesComponent implements OnInit {
   // Parameters List
   public selectedID: number = 0;
   public selectedRows: boolean[] = [];
-  public _ArticleID ?: number | string;
+  public _ArticleID ?: any;
   public ArticleObject: Article = new Article(); 
   public responseTime: any; 
   
@@ -69,12 +71,17 @@ export class McArticlesComponent implements OnInit {
     private GroupService: GroupService
   ) {}
 
+  ngAfterViewInit(): void {
+      
+  }
+
 
   ngOnInit(): void {
-      //this.get();
-      //this.getSectors();
-    
 
+  }
+
+  getSelectedItem  = (item: any) => {
+    this._ArticleID = item.code
   }
 
    get = () => {
@@ -84,8 +91,6 @@ export class McArticlesComponent implements OnInit {
         this.DataList =  response;
         this.cdr.detectChanges();
         let endTime = performance.now();
-
-
 
        }
    )
@@ -239,8 +244,6 @@ export class McArticlesComponent implements OnInit {
       this.ArticleService.getItemByCode(this._ArticleID).subscribe(
         response => {
           this.ArticleObject = response as Article
-
-          //console.log(this.ArticleObject);
         }
       )
         

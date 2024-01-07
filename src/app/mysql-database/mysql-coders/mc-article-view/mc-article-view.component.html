@@ -58,22 +58,154 @@
     </div>
     <div class="w-full p-4"></div>
     <sql-table-code item_length="0" item_name="artikli" [where_statment]="true"  [where_statment_query]="Info?.title"></sql-table-code>
-    <!-- Edit article START -->
+    <div class="w-full rounded shadow-sm shadow-gray-500/50 my-3 p-2 bg-white space-y-2">
+        <div class="grid grid-cols-4 gap-4">
+            <div>
+                <label for="article_code" class="block text-sm font-medium leading-6 text-gray-900">Ident</label>
+                <div class="mt-2">
+                  <input type="text" name="article_code" id="article_code" class="block px-4 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.code">
+                </div>
+              </div>
+              <div>
+                <label for="article_tiitle" class="block text-sm font-medium leading-6 text-gray-900">Naziv</label>
+                <div class="mt-2">
+                  <input type="text" name="article_tiitle" id="article_tiitle" class="block px-4 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.title">
+                </div>
+              </div>
+              <div class="flex items-center justify-between space-x-4 py-2 ">
+                <button (click)="setObjectToggle('active_item')"  type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                    <span aria-hidden="true" class="item_active  translate-x-0  pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                  </button>
+                <span (click)="setObjectToggle('active_item')"  class="flex flex-grow flex-col cursor-pointer">
+                  <span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Vidljivost</span>
+                  <span class="text-sm text-gray-500" id="availability-description">Nastavi vidlivost artikla. </span>
+                </span>
+                <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+
+              </div>
+              <div class="flex items-center justify-between space-x-4 py-2 ">
+                <button  (click)="setObjectToggle('active_intrasant')" type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" role="switch" aria-checked="false" aria-labelledby="availability-label" aria-describedby="availability-description">
+                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
+                    <span aria-hidden="true" class="intrasant_active translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                  </button>
+                <span  (click)="setObjectToggle('active_intrasant')" class="flex flex-grow flex-col cursor-pointer">
+                  <span class="text-sm font-medium leading-6 text-gray-900" id="availability-label">Intrasant</span>
+                  <span class="text-sm text-gray-500" id="availability-description">Nastavi intrasant artikla. </span>
+                </span>
+                <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
+
+              </div>
+        </div>
+        <div class="grid grid-cols-3 gap-4">
+            <div>
+                <label  (click)="toggleSelectMenu('custom_tariffs_dropbox')"  for="article_custom_tarrifs" class="block text-sm font-medium leading-6 text-gray-900">Carinska Tarifa</label>
+                <div class="relative mt-2">
+                  <input id="article_custom_tarrifs" [value]="CustomTariffsObject?.title"  [(ngModel)]="searchText"  type="text" class="w-full px-4 rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="article_custom_tarrifs" aria-controls="options" aria-expanded="false">
+                  <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                    <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+              
+                  <ul class="absolute hidden  custom_tariffs_dropbox z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm space-y-2" id="options" role="listbox">
+                    @for(ct of (CTList | search: searchText); track ct) {
+                        <li class="relative cursor-pointer select-none py-2 pl-3 pr-9   text-sky-900 hover:bg-sky-200   rounded " (click)="setChosenItem(ct,'custom_tariffs',true)"   id="option-0" role="option" tabindex="-1">
+                            <div class="flex items-center">
+                              <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                              <span class="ml-3 truncate">
+                                {{ ct?.title }}
+                                <span class="sr-only"> is online</span>
+                              </span>
+                            </div>
+                            @if(CustomTariffsObjectActive == true && ct.id == CustomTariffsObject.id){
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            } @else {
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-white">
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            }
+                          </li>
+                    } @empty {
+                        <li class="cursor-default select-none py-2 pl-3 pr-9 bg-sky-100 flex items-left space-x-4" id="option-0" role="option" tabindex="-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-sky-800 font-medium">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                            </svg>
+                            <div class="py-1 5">
+                                Iskana vrednost ni bila najdena !
+                            </div>
+                                                            
+                        </li>
+                    
+                    }
+                  </ul>
+                </div>
+            </div>
+            <div>
+                <label for="article_mass" class="block text-sm font-medium leading-6 text-gray-900">Neto masa</label>
+                <div class="mt-2">
+                  <input type="text" name="article_mass" id="article_mass" class="block  px-4  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"  placeholder="0,000">
+                </div>
+            </div>
+            <div>
+                <label for="article_country" (click)="toggleSelectMenu('country_list_dropbox')"  class="block country_label  text-sm font-medium leading-6 text-gray-900">Poreklo</label>
+                <div class="relative mt-2">
+                  <input id="article_country" [value]="CountryObject?.name" [(ngModel)]="searchCountryText"  type="text" class="w-full px-4 rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="article_country" aria-controls="options" aria-expanded="false">
+                  <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                    <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+                    </svg>
+                  </button>
+              
+                  <ul class="absolute hidden country_list_dropbox  z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+                    @for(ci  of (CountryList | search: searchCountryText); track ci) {
+                        <li class="relative cursor-pointer select-none py-2 pl-3 pr-9   text-sky-900 hover:bg-sky-200   rounded " id="option-0" (click)="setChosenItem(ci,'country',true)"  role="option" tabindex="-1">
+                            <div class="flex items-center">
+                              <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                              <span class="ml-3 truncate">
+                                {{ ci?.name }}
+                                <span class="sr-only"> is online</span>
+                              </span>
+                            </div>
+                            @if(CountryObjectActive == true && ci.id == CountryObject.id){
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            }@else{
+                                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-white">
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                            }
+                        </li>                   
+                    }  @empty {
+                        <li class="cursor-default select-none py-2 pl-3 pr-9 bg-sky-100 flex items-left space-x-4" id="option-0" role="option" tabindex="-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-sky-800 font-medium">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                            </svg>
+                            <div class="py-1 5">
+                                Iskana vrednost ni bila najdena !
+                            </div>                                                            
+                        </li>
+                    }
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="w-full bg-white rounded-[5px] shadow-sm shadow-gray-500/50">
         <div>
-            <div class="sm:hidden">
-              <label for="tabs" class="sr-only">Select a tab</label>
-              <!-- Use an "onChange" listener to redirect the user to the selected tab URL. -->
-              <select id="tabs" name="tabs" class="block w-full rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
-                <option selected>My Account</option>
-                <option>Company</option>
-                <option>Team Members</option>
-                <option>Billing</option>
-              </select>
-            </div>
             <div class="hidden sm:block">
               <nav class="isolate flex divide-x divide-gray-200 rounded-lg shadow" aria-label="Tabs">
-                <!-- Current: "text-gray-900", Default: "text-gray-500 hover:text-gray-700" -->
                 <a routerLink="/mysql/coders/article/{{ _routeID }}"   class="text-gray-900 rounded-tl-[5px] group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-center text-sm font-medium hover:bg-gray-50 focus:z-10" aria-current="page">
                   <span>Osnovne informacije</span>
                   <span aria-hidden="true" class="bg-indigo-500 absolute inset-x-0 bottom-0 h-0.5"></span>

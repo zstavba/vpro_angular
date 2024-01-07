@@ -85,7 +85,7 @@
                     </div>        
                 </div>
             </div>
-            <sql-table [data]="DataList" [dataKeys]="ObjectKeys"></sql-table>
+            <sql-table [data]="DataList" (ID)="getSelectedItem($event)"  [dataKeys]="ObjectKeys"></sql-table>
           </div>
         </div>
       </div>

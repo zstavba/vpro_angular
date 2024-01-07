@@ -11,7 +11,7 @@ import { WorkOrderService } from './Services/work-order.service';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { ArticleService } from './Services/article.service';
 import { Article } from './dashboard/Classes/article';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CountryService } from './Services/country.service';
 import { Country } from './dashboard/Classes/country';
 import { ProductionService } from './Services/production.service';
@@ -37,17 +37,20 @@ import { UpnCodes } from './dashboard/Classes/upn-codes';
 import { ControlPlan } from './dashboard/Classes/control-plan';
 import { ArticleBasics } from './dashboard/Classes/article-basics';
 import { GroupService } from './Services/group.service';
+import { SearchPipe } from './Pipes/search.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule, 
+    FormsModule,
+    ReactiveFormsModule,
     RouterOutlet, 
     UserAvatarComponent, 
     HttpClientModule, 
     EditorModule,
-    FormsModule
+    
 
   ],
   providers: [
@@ -82,7 +85,8 @@ import { GroupService } from './Services/group.service';
     WorkCenter,
     UpnCodes,
     ControlPlan,
-    GroupService
+    GroupService,
+    SearchPipe
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

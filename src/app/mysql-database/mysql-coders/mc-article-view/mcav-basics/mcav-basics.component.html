@@ -1,57 +1,73 @@
-<div class="space-y-6">
-    <div class="grid grid-cols-3 gap-4">
-        <div>
-            <label for="article_code" class="block text-sm font-medium leading-6 text-gray-900">Ident</label>
-            <div class="mt-2">
-              <input type="text" name="article_code" id="article_code" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.code">
-            </div>
-        </div>
-        <div>
-            <label for="article_title" class="block text-sm font-medium leading-6 text-gray-900">Naslov</label>
-            <div class="mt-2">
-              <input type="text" name="article_title" id="article_title" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.title">
-            </div>
-        </div>
-        <div class="">
-            <label for="article_traceability" class="block text-sm font-medium leading-6 text-gray-900">Vidljivost artikla</label>
-            <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-            <div class="flex items-center mt-3">
-                <button type="button" class="bg-gray-200 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2" id="article_traceability" role="switch" aria-checked="false" aria-labelledby="annual-billing-label">
-                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                    <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                  </button>
-                  <span class="ml-3 text-sm" id="annual-billing-label">
-                    <span class="font-thin text-gray-900">Nastavi vidljivost artikla</span>
-                  </span>
-            </div>
+<div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+        <label for="article_ean_code" class="block text-sm font-medium leading-6 text-gray-900">EAN Koda</label>
+        <div class="mt-2">
+          <input type="text" name="article_ean_code" id="article_ean_code" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.ean">
         </div>
     </div>
-    <div class="grid grid-cols-3 gap-4">
-        <div>
-            <label for="article_ean_code" class="block text-sm font-medium leading-6 text-gray-900">EAN Koda</label>
-            <div class="mt-2">
-              <input type="text" name="article_ean_code" id="article_ean_code" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.ean">
-            </div>
-        </div>
-        <div>
-            <label for="article_packaging_type" class="block text-sm font-medium leading-6 text-gray-900">Tip Parkiranja</label>
-            <div class="mt-2">
-              <input type="text" name="article_packaging_type" id="article_packaging_type" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.packaging_type">
-            </div>
-        </div>
-        <div>
-            <label for="article_pallete" class="block text-sm font-medium leading-6 text-gray-900">Paleta</label>
-            <div class="mt-2">
-              <input type="text" name="article_pallete" id="article_pallete" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="">
-            </div>
+    <div>
+        <label for="article_packaging_type" class="block text-sm font-medium leading-6 text-gray-900">Tip Parkiranja</label>
+        <div class="mt-2">
+          <input type="text" name="article_packaging_type" id="article_packaging_type" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.packaging_type">
         </div>
     </div>
-    <div class="grid grid-cols-3 gap-4">
-      <div>
-          <label for="article_stock" class="block text-sm font-medium leading-6 text-gray-900">Zaloga</label>
-          <div class="mt-2">
-              <input type="text" name="article_stock" id="article_stock" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.stock">
-          </div>
+    <div>
+        <label for="article_pallete" class="block text-sm font-medium leading-6 text-gray-900">Paleta</label>
+        <div class="mt-2">
+          <input type="text" name="article_pallete" id="article_pallete" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="">
+        </div>
+    </div>
+    <div>
+      <label for="article_stock" class="block text-sm font-medium leading-6 text-gray-900">Zaloga</label>
+      <div class="mt-2">
+          <input type="text" name="article_stock" id="article_stock" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.stock">
       </div>
     </div>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label for="combobox" class="block text-sm font-medium leading-6 text-gray-900">Dobavitelji</label>
+      <div class="relative mt-2">
+        <input id="combobox" type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
+        <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+          <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+    
+        <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+          @for(supplier of SuppliersList; track supplier){
+            @if(supplier && supplier.hasOwnProperty('user')){
+              <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 text-xs rounded hover:bg-sky-100"   role="option" tabindex="-1">
+                <div class="flex items-center space-x-4">
+                  <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  <span class="px-4" >{{  supplier.user.firstName }}</span>
+                  <span class="ml-3 truncate">
+                    <span class="sr-only"> is online</span>
+                  </span>
+                </div>
+                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </li>
+            }@else {
+              <li class="relative cursor-default select-none py-2 pl-3 pr-9 bg-red-100 flex item-left " id="option-0" role="option" tabindex="-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-900 font-medium">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+                <div class="text-red-500">
+                  Seznam dobaviteljev je trenutno prazen.
+                </div>                
+              </li>
+            }
+
+          }
+          
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from 'node:stream';
 
 @Component({
   selector: 'sql-table-code',
@@ -15,8 +16,14 @@ export class SqlTableCodeComponent implements OnInit {
   @Input() where_statment_query ?: string;  
   @Input() response_time: any; 
 
+   
+  //@Output() routeID: EventEmitter = new EventEmitter()
+
+ 
+
   ngOnInit(): void {
-    
   }
+
+
 
 }
