@@ -252,46 +252,43 @@
                   <span class="sr-only"> is online</span>
                 </span>
               </div>
-              @if(item.type == '1'){
-                @if(Group1ItemActive && ChosenGroup1Object.id == item.id){
-                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                }@else {
-
+              @switch(item.type){
+                @case('1'){
+                  @if(Group1ItemActive && ChosenGroup1Object.id == item.id){
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  }@else {}
                 }
-              }@else if(item.type == '2'){
-                @if(Group2ItemActive && ChosenGroup2Object.id == item.id){
-                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                }@else {
-
+                @case('2'){
+                  @if(Group2ItemActive && ChosenGroup2Object.id == item.id){
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  }@else {}                   
                 }
-              }@else if(item.type == '03'){
-                @if(Group3ItemActive && ChosenGroup3Object.id == item.id){
-                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                }@else {
-
+                @case('03'){
+                  @if(Group3ItemActive && ChosenGroup3Object.id == item.id){
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  }@else {}                 
                 }
-              }@else {
-                @if(Group4ItemActive && ChosenGroup4Object.id == item.id){
-                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                    </svg>
-                  </span>
-                }@else {
-
-                }              
+                @case('04'){
+                  @if(Group4ItemActive && ChosenGroup4Object.id == item.id){
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  }@else {}                     
+                }
               }
             </li>
           }
