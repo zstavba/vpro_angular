@@ -21,25 +21,33 @@ export class SearchPipe implements PipeTransform {
   
   private userContainsFilterText = (item: any, filterText: string): boolean => {
     try {
-      if(item.title !== undefined && item.title !== null || item.name !== undefined && item.name !== null) {
+      if(item.title !== undefined && item.title !== null || item.name !== undefined && item.name !== null || item.fk_user_id !== undefined && item.fk_user_id.title !== null || item.user !== undefined && item.user.firstName !== null) {
         filterText = filterText.toLowerCase();
         const filterTerms = filterText.split(' ');
         
         for (let term of filterTerms) {
           let hasFilterTerm = false;
 
+
+          if(item.user && item.user.firstName.toLowerCase().includes(term) ) {
+            return true; 
+          }
+
+          if(item.fk_user_id && item.fk_user_id.firstName.toLowerCase().includes(term) ) {
+            return true; 
+          }
+
+
           if(item.title && item.title.toLowerCase().includes(term) ) {
-            //console.log(item);
             return true; 
           }
 
           if(item.name && item?.name.toLowerCase().includes(term)){
-            //console.log(item);
             return true;
           }
 
           if (!hasFilterTerm) {
-            return false; // No match found for the current term
+            return false; 
           }        
         }
         return true;

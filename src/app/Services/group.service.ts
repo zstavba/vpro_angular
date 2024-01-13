@@ -16,4 +16,8 @@ export class GroupService {
     return this.http.get<GroupType[]>(`${this.http_link}/group/list`)
   }
 
+  getByType = (group_type: string): Observable<GroupType[]> => {
+    return this.http.get<GroupType[]>(`${this.http_link}/group/list/${group_type}`);
+  }
+
 }

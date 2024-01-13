@@ -7,6 +7,7 @@ import { WarehouseLocation } from '../dashboard/Classes/warehouse-location';
 import { CostCities } from '../dashboard/Classes/cost-cities';
 import { OrganizationalUnits } from '../dashboard/Classes/organizational-units';
 import { Areas } from '../dashboard/Classes/areas';
+import { Warehouse } from '../dashboard/Classes/warehouse';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class WarehouseService {
 
   constructor(private http: HttpClient) { }
 
-  get = (): Observable<any> => {
-    return this.http.get<any>(`${this.http_link}/warehouse/list`);
+  get = (): Observable<Warehouse[]> => {
+    return this.http.get<Warehouse[]>(`${this.http_link}/warehouse/list`);
   }
 
   getCategories = (): Observable<WarehouseCategories[]> => {

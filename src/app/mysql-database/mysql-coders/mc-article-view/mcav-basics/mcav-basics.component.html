@@ -7,10 +7,32 @@
         </div>
     </div>
     <div>
-        <label for="article_packaging_type" class="block text-sm font-medium leading-6 text-gray-900">Tip Parkiranja</label>
-        <div class="mt-2">
-          <input type="text" name="article_packaging_type" id="article_packaging_type" class="block px-2  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" [value]="Info?.packaging_type">
-        </div>
+      <label for="article_type" class="block text-sm font-medium leading-6 text-gray-900">Tip Parkiranja</label>
+      <div class="relative mt-2">
+        <input id="article_type" type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="article_type" aria-controls="options" aria-expanded="false">
+        <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+          <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+          </svg>
+        </button>
+        <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+            @for(articleType of ATList; track articleType){
+              <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900"  (click)="selectChosenItem(articleType,'aritlce_type',true)" id="option-0" role="option" tabindex="-1">
+                <div class="flex items-center">
+                  <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  <span class="ml-3 truncate">
+                    {{ articleType.title }}
+                  </span>
+                </div>
+                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+              </li>
+            }
+        </ul>
+      </div>
     </div>
     <div>
         <label for="article_pallete" class="block text-sm font-medium leading-6 text-gray-900">Paleta</label>
@@ -25,49 +47,258 @@
       </div>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-rows-2  gap-4">
+    <div class="row-span-1 grid grid-cols-2 gap-4">
+      <div>
+        <label (click)="toggleSelectedMenu('supplier_menu')"  for="combobox" class="block text-sm font-medium leading-6 text-gray-900">Dobavitelji</label>
+        <div class="relative mt-2 ">
+          <input id="combobox" type="text" [value]="ChosenSupplierObject.firstName" [(ngModel)]="searchUsers"   class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
+          <button    type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <ul class="absolute supplier_menu_dropdown hidden z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+            @for(supplier of (SuppliersList | search: searchUsers); track supplier){
+              @if(supplier && supplier.hasOwnProperty('user')){
+                <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 text-xs rounded hover:bg-sky-100"   (click)="selectChosenItem(supplier.user, 'suppliers', true)"  role="option" tabindex="-1">
+                  <div class="flex items-center space-x-4">
+                    <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                    <span class="px-4" >{{  supplier.user.firstName }}</span>
+                    <span class="ml-3 truncate">
+                      <span class="sr-only"> is online</span>
+                    </span>
+                  </div>
+                  @if(SupplierItemActive == true && supplier.user.id == ChosenSupplierObject.id){
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  } @else {
+  
+                  }
+                </li>
+              }@else {
+  
+              }
+  
+            } @empty {
+              <li class="relative space-x-4 cursor-default select-none py-2 pl-3 pr-9 bg-red-100 flex item-left " id="option-0" role="option" tabindex="-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-900 font-medium">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+                <div class="text-red-500 py-0.5">
+                  Seznam dobaviteljev je trenutno prazen.
+                </div>                
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+      <div>
+        <label (click)="toggleSelectedMenu('warehouse_menu')"  for="article_warehouse" class="block text-sm font-medium leading-6 text-gray-900">Skladišče</label>
+        <div class="relative mt-2">
+          <input id="article_warehouse" type="text" [value]="ChosenWarehouseObject.title" [(ngModel)]="seachWarehouse"   class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="article_warehouse" aria-controls="options" aria-expanded="false">
+          <button     type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+            <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+        <ul class="absolute hidden  warehouse_dropdown_menu z-10 mt-1 max-h-60 w-[350px] overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+            @for(warehouse of WList; track warehouse){
+              <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 text-xs rounded hover:bg-sky-100"  (click)="selectChosenItem(warehouse,'warehouse',true)"  role="option" tabindex="-1">
+                <div class="flex items-center space-x-4">
+                  <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                  <span class="px-4" >{{  warehouse.title }}</span>
+                  @if(WarehouseItemActive == true && warehouse.id == ChosenWarehouseObject.id){
+                    <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                      <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                      </svg>
+                    </span>
+                  } @else {
+  
+                  }
+                </div>
+              </li>
+            } @empty {
+              <li class="relative space-x-4 cursor-default select-none py-2 pl-3 pr-9 bg-red-100 flex item-left " id="option-0" role="option" tabindex="-1">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-900 font-medium">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                </svg>
+                <div class="text-red-500 py-0.5">
+                  Seznam dobaviteljev je trenutno prazen.
+                </div>                
+              </li>            
+            }
+          
+        </ul>
+      </div>
+    </div>
+    <div class="row-span-2">
+      <div class="col-span-2">
+        <label   for="article_warehouse_unit" class="block text-sm font-medium leading-6 text-gray-900">Enota</label>
+        <div class="flex items-left mt-2">
+          <div class="w-[120px]">
+            <div class="relative mt-2">
+              <input (click)="toggleSelectedMenu('warehouse_unit_one_dropdown_menu')"  id="article_warehouse_unit" type="text"  [(ngModel)]="searchUnitOne"   class="w-full rounded-l border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="article_warehouse_unit" aria-controls="options" aria-expanded="false">
+              <button     type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+            <ul class="absolute hidden  warehouse_unit_one_dropdown_menu z-10 mt-1 max-h-60 w-[200px] overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+                @for(unit of (MUList | search: searchUnitOne); track unit){
+                  <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 text-xs rounded hover:bg-sky-100"  (click)="selectChosenItem(unit,'unit',true)"  role="option" tabindex="-1">
+                    <div class="flex items-center space-x-4">
+                      <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                      <span class="px-4" >{{  unit.name }}</span>
+  
+                    </div>
+                  </li>
+                } @empty {
+                  <li class="relative space-x-4 cursor-default select-none py-2 pl-3 pr-9 bg-red-100 flex item-left " id="option-0" role="option" tabindex="-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-900 font-medium">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                    </svg>
+                    <div class="text-red-500 py-0.5">
+                      Seznam Enot je trenutno prazen.
+                    </div>                
+                  </li>            
+                }
+              
+            </ul>
+          </div>
+          <div class="bg-gray-50 text-xs h-[36px] p-2 my-2 border border-gray-100 shadow-sm shadow-gray-500/10">
+            xFaktor
+          </div>
+          <input placeholder="1,000" type="text"    class="w-[120px] h-[36px] my-2 border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div class="bg-gray-50 text-xs h-[36px] p-2 my-2 border border-gray-100 shadow-sm shadow-gray-500/10">
+            x10
+          </div>        
+          <input placeholder="" type="text"    class="w-[120px] h-[36px] my-2 border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <div class="bg-gray-50 text-[0.55rem] h-[36px] w-[150px] px-2 py-2.5 my-2 border border-gray-100 shadow-sm shadow-gray-500/10">
+            = Alt enota mere
+          </div>
+          <div class="flex items-left mt-2">
+            <div class="w-[120px]">
+              <div class="relative">
+                <input (click)="toggleSelectedMenu('warehouse_unit_two_dropdown_menu')"  id="article_warehouse_unit" type="text"  [(ngModel)]="searchUnitTwo"   class="w-full rounded-r border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="article_warehouse_unit" aria-controls="options" aria-expanded="false">
+                <button     type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
+                  <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+              </div>
+              <ul class="absolute hidden warehouse_unit_two_dropdown_menu z-10 mt-1 max-h-60 w-[200px] overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm right-[2rem]" id="options" role="listbox">
+                  @for(unit of (MUList | search: searchUnitTwo); track unit){
+                    <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 text-xs rounded hover:bg-sky-100"  (click)="selectChosenItem(unit,'unit',true)"  role="option" tabindex="-1">
+                      <div class="flex items-center space-x-4">
+                        <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                        <span class="px-4" >{{  unit.name }}</span>
+    
+                      </div>
+                    </li>
+                  } @empty {
+                    <li class="relative space-x-4 cursor-default select-none py-2 pl-3 pr-9 bg-red-100 flex item-left " id="option-0" role="option" tabindex="-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-900 font-medium">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+                      </svg>
+                      <div class="text-red-500 py-0.5">
+                        Seznam Enot je trenutno prazen.
+                      </div>                
+                    </li>            
+                  }                
+              </ul>
+            </div>          
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<!-- GROUP Type LIST Dynamic SHOW START  -->
+<div class="w-full grid gap-4 my-4" [class]="['grid-cols-'+group_length.length]">
+  @for(groupItem of group_length; track groupItem){
     <div>
-      <label for="combobox" class="block text-sm font-medium leading-6 text-gray-900">Dobavitelji</label>
+      <label (click)="toggleSelectedMenu('group_type_dropdown_menu_'+groupItem.type)"  [htmlFor]="['article_type_'+groupItem.type]"   class="block text-sm font-medium leading-6 text-gray-900">{{  groupItem.title }}</label>
       <div class="relative mt-2">
-        <input id="combobox" type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
+        @if(groupItem.type == '1'){
+          <input [id]="['article_type_'+groupItem.type]" [value]="ChosenGroup1Object.name"    type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
+        }@else if(groupItem.type == '2'){
+          <input [id]="['article_type_'+groupItem.type]" [value]="ChosenGroup2Object.name" type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"   role="combobox" aria-controls="options" aria-expanded="false">
+        }@else if(groupItem.type == '03') {
+          <input [id]="['article_type_'+groupItem.type]" [value]="ChosenGroup3Object.name"  type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
+        } @else {
+          <input [id]="['article_type_'+groupItem.type]"  [value]="ChosenGroup4Object.name" type="text" class="w-full rounded-md border-0 bg-white py-1.5 pl-3 pr-12 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" role="combobox" aria-controls="options" aria-expanded="false">
+        }
         <button type="button" class="absolute inset-y-0 right-0 flex items-center rounded-r-md px-2 focus:outline-none">
           <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z" clip-rule="evenodd" />
           </svg>
         </button>
-    
-        <ul class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
-          @for(supplier of SuppliersList; track supplier){
-            @if(supplier && supplier.hasOwnProperty('user')){
-              <li class="relative cursor-default select-none py-2 pl-3 pr-9 text-gray-900 text-xs rounded hover:bg-sky-100"   role="option" tabindex="-1">
-                <div class="flex items-center space-x-4">
-                  <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
-                  <span class="px-4" >{{  supplier.user.firstName }}</span>
-                  <span class="ml-3 truncate">
-                    <span class="sr-only"> is online</span>
-                  </span>
-                </div>
-                <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
-                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
-                  </svg>
+        <ul [class]="['group_type_dropdown_menu_'+groupItem.type]"  class="absolute hidden  z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm" id="options" role="listbox">
+          @for(item of groupItem.group; track item){
+            <li class="relative cursor-pointer my-2 hover:bg-sky-100 rounded select-none py-2 pl-3 pr-9 text-gray-900"  (click)="selectChosenItem(item,groupItem.type,true)" id="option-0" role="option" tabindex="-1">
+              <div class="flex items-center">
+                <span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400" aria-hidden="true"></span>
+                <span class="ml-3 truncate">
+                  {{ item.name }}
+                  <span class="sr-only"> is online</span>
                 </span>
-              </li>
-            }@else {
-              <li class="relative cursor-default select-none py-2 pl-3 pr-9 bg-red-100 flex item-left " id="option-0" role="option" tabindex="-1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-900 font-medium">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-                </svg>
-                <div class="text-red-500">
-                  Seznam dobaviteljev je trenutno prazen.
-                </div>                
-              </li>
-            }
+              </div>
+              @if(item.type == '1'){
+                @if(Group1ItemActive && ChosenGroup1Object.id == item.id){
+                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                }@else {
 
+                }
+              }@else if(item.type == '2'){
+                @if(Group2ItemActive && ChosenGroup2Object.id == item.id){
+                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                }@else {
+
+                }
+              }@else if(item.type == '03'){
+                @if(Group3ItemActive && ChosenGroup3Object.id == item.id){
+                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                }@else {
+
+                }
+              }@else {
+                @if(Group4ItemActive && ChosenGroup4Object.id == item.id){
+                  <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                    </svg>
+                  </span>
+                }@else {
+
+                }              
+              }
+            </li>
           }
-          
         </ul>
       </div>
-    </div>
-  </div>
+    </div>      
+  } 
 </div>
+<!-- GROUP Type LIST Dynamic SHOW END  -->
+
