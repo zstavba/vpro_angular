@@ -1,0 +1,177 @@
+<add-company></add-company>
+<div class="border-b border-gray-200 pb-1 sm:flex sm:items-center sm:justify-between">
+    <div class="py-2">
+        <div class="text-base font-semibold leading-6 text-gray-900">Dobavitelji</div>
+        <div class="font-thin text-gray-500 text-xs" >Dodaj novega dobavitelja</div>
+    </div>
+    <div class="mt-3 sm:ml-4 sm:mt-0">
+      <button data-modal-target="addUserModule" data-modal-toggle="addUserModule" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0ZM3 19.235v-.11a6.375 6.375 0 0 1 12.75 0v.109A12.318 12.318 0 0 1 9.374 21c-2.331 0-4.512-.645-6.374-1.766Z" />
+        </svg>        
+      </button>
+    </div>
+  </div>
+  <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8 my-4">
+    <li class="overflow-hidden rounded-xl border border-gray-200">
+      <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+        <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+        <div class="text-sm font-medium leading-6 text-gray-900">
+            <div>
+                <div class="flex items-left">
+                   <div> Šifra dobavitelja: </div>
+                   <div class="inline-flex mx-4 items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">006939</div>
+                </div>
+                <div>TEKA-INVEST</div>
+            </div>
+        </div>
+        <div class="relative ml-auto">
+          <button type="button" class="-m-2.5 block p-2.5 text-gray-400 hover:text-gray-500" id="options-menu-0-button" aria-expanded="false" aria-haspopup="true">
+            <span class="sr-only">Odprto</span>
+            <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+            </svg>
+          </button>
+
+          <div class="absolute hidden right-0 z-10 mt-0.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu-0-button" tabindex="-1">
+            <!-- Active: "bg-gray-50", Not Active: "" -->
+            <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-0">View<span class="sr-only">, Tuple</span></a>
+            <a href="#" class="block px-3 py-1 text-sm leading-6 text-gray-900" role="menuitem" tabindex="-1" id="options-menu-0-item-1">Edit<span class="sr-only">, Tuple</span></a>
+          </div>
+        </div>
+      </div>
+      <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+        <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Datum nakupa</dt>
+          <dd class="text-gray-700"><time datetime="2022-12-13">05 Januar 2024</time></dd>
+        </div>
+        <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Znesek</dt>
+          <dd class="flex items-start gap-x-2">
+            <div class="font-medium text-gray-900">
+                2,500 €
+            </div>
+          </dd>
+        </div>
+      </dl>
+    </li>
+
+  </ul>
+  <div class="border-b border-gray-200 pb-1 sm:flex sm:items-center sm:justify-between">
+    <div class="py-2">
+        <div class="text-base font-semibold leading-6 text-gray-900">Zaloga</div>
+        <div class="font-thin text-gray-500 text-xs" >Sekcija za kalkulacijo zaloge</div>
+    </div>
+    <div class="mt-3 sm:ml-4 sm:mt-0">
+        <button type="button" class="inline-flex mx-4 items-center rounded-md bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm hover:bg-slate-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 0 1 2.25-2.25h7.5A2.25 2.25 0 0 1 18 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 0 0 4.5 9v.878m13.5-3A2.25 2.25 0 0 1 19.5 9v.878m0 0a2.246 2.246 0 0 0-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0 1 21 12v6a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18v-6c0-.98.626-1.813 1.5-2.122" />
+            </svg>                               
+        </button>
+        <button type="button" class="inline-flex items-center rounded-md bg-sky-100 px-3 py-2 text-sm font-semibold text-sky-700 shadow-sm hover:bg-sky-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V18Zm2.498-6.75h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V13.5Zm0 2.25h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V18Zm2.504-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V18Zm2.498-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5ZM8.25 6h7.5v2.25h-7.5V6ZM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0 0 12 2.25Z" />
+        </svg>                    
+      </button>
+    </div>
+  </div>
+  <div class="grid sm:grid-cols-3 grid-cols-1 gap-4 my-4">
+    <div class="space-y-4">
+        <div>
+            <label for="article_stock_minimum" class="block text-sm font-medium leading-6 text-gray-900">Minimalna</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_minimum" id="article_stock_minimum" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_block"  class="block text-sm font-medium leading-6 text-gray-900">Blok. Zaloga</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_block" id="article_stock_block" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_signal"  class="block text-sm font-medium leading-6 text-gray-900">Signalna</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_signal" id="article_stock_signal" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_optimal"  class="block text-sm font-medium leading-6 text-gray-900">Optimalna</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_optimal" id="article_stock_optimal" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div class="space-y-5">
+            <div class="relative flex items-start">
+              <div class="flex h-6 items-center">
+                <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+              </div>
+              <div class="ml-3 text-sm leading-6">
+                <label for="comments" class="font-medium text-gray-900">Ročen vnos minimalne zaloge</label>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <div>
+            <label for="article_stock_per_unit" class="block text-sm font-medium leading-6 text-gray-900">Stroški nabave na enoto</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_per_unit" id="article_stock_per_unit" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_costs" class="block text-sm font-medium leading-6 text-gray-900">Stroški skladiščenja</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_costs" id="article_stock_costs" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_average" class="block text-sm font-medium leading-6 text-gray-900">Povprečna vrednost stanja zalog</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_average" id="article_stock_average" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_quarantine" class="block text-sm font-medium leading-6 text-gray-900">Karantena</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_quarantine" id="article_stock_quarantine" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div class="space-y-5">
+            <div class="relative flex items-start">
+              <div class="flex h-6 items-center">
+                <input id="article_stock_no_credit" aria-describedby="comments-description" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600">
+              </div>
+              <div class="ml-3 text-sm leading-6">
+                <label for="article_stock_no_credit" class="font-medium text-gray-900">Brez breme/dobropisa na KA</label>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-y-4">
+        <div>
+            <label for="article_stock_optimal_shopping" class="block text-sm font-medium leading-6 text-gray-900">Optimalna količina naročanja</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_optimal_shopping" id="article_stock_optimal_shopping" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_optimal_shopping_per_year" class="block text-sm font-medium leading-6 text-gray-900">Predvidena količina nabave na leto</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_optimal_shopping_per_year" id="article_stock_optimal_shopping_per_year" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_abc_class" class="block text-sm font-medium leading-6 text-gray-900">ABC-Razred</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_abc_class" id="article_stock_abc_class" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+        <div>
+            <label for="article_stock_block_price" class="block text-sm font-medium leading-6 text-gray-900">Blok Cena</label>
+            <div class="mt-2">
+              <input type="text" name="article_stock_block_price" id="article_stock_block_price" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+            </div>
+        </div>
+    </div>
+  </div>

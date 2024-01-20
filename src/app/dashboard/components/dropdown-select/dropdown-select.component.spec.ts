@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { McavCountryComponent } from './mcav-country.component';
+import { DropdownSelectComponent } from './dropdown-select.component';
 
-describe('McavCountryComponent', () => {
-  let component: McavCountryComponent;
-  let fixture: ComponentFixture<McavCountryComponent>;
+describe('DropdownSelectComponent', () => {
+  let component: DropdownSelectComponent;
+  let fixture: ComponentFixture<DropdownSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [McavCountryComponent]
+      imports: [DropdownSelectComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(McavCountryComponent);
+    fixture = TestBed.createComponent(DropdownSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

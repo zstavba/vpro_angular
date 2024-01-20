@@ -6,5 +6,5 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideNoopAnimations()]
+  providers: [provideRouter(routes), provideClientHydration(), provideNoopAnimations(), provideNoopAnimations()]
 };

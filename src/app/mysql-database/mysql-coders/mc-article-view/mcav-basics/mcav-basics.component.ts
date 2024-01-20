@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ArticleService } from '../../../../Services/article.service';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Article } from '../../../../dashboard/Classes/article';
 import { CountryService } from '../../../../Services/country.service';
 import { Country } from '../../../../dashboard/Classes/country';
@@ -22,34 +22,87 @@ import { SearchPipe } from '../../../../Pipes/search.pipe';
 import { GroupService } from '../../../../Services/group.service';
 import { GroupType } from '../../../../dashboard/Classes/group-type';
 import { Group } from '../../../../dashboard/Classes/group';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { Tax } from '../../../../dashboard/Classes/tax';
+import { BankService } from '../../../../Services/bank.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-mcav-basics',
   standalone: true,
   imports: [
     FormsModule,
-    SearchPipe
+    SearchPipe,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
+  ],
+  providers: [
   ],
   templateUrl: './mcav-basics.component.html',
   styleUrl: './mcav-basics.component.scss'
 })
 export class McavBasicsComponent implements OnInit {
 
+  range = new FormGroup({
+    start: new FormControl<Date | null>(null),
+    end: new FormControl<Date | null>(null),
+  });
+
+  // Route Parameters
   public _childRouteID: any;
   public Info ?: Article;
+
+  // Search Parameters
   public searchUsers: string = '';
   public seachWarehouse: string = '';
   public searchUnitOne: string = '';
   public searchUnitTwo: string = '';
+  public searchArticleType: string = '';
 
-  public group_length: Array<any> = new Array();
+  public mergedDataList : { article: Article, country: Country }[] = [];
+  
+  //Units Functions 
+  public MUList: Array<MeasurementUnits> = new Array<MeasurementUnits>();
+  public UnitOneObject: MeasurementUnits = new MeasurementUnits(); 
+  public UnitOneActive: boolean = false; 
+  public UnitTwoObject: MeasurementUnits = new MeasurementUnits(); 
+  public UnitTwoActive: boolean = false; 
 
-  public ChosenSupplierObject: User = new User(); 
-  public SupplierItemActive: boolean = false; 
 
+  // Warehouse Functions
+  public WList: Array<Warehouse> = new Array<Warehouse>();
   public ChosenWarehouseObject: Warehouse = new Warehouse(); 
   public WarehouseItemActive: boolean = false; 
 
+
+  // Custom Tariffs Functions
+  public CTList: Array<CustomTarrifs> = new Array<CustomTarrifs>();
+
+  // Article Type Functions
+  public ATList: Array<ArticleType> = new Array<ArticleType>();
+  public ArticleTypeObject: ArticleType = new ArticleType(); 
+  public ArticleTypeActive: boolean = false; 
+
+
+  // Classification Functions
+  public CLList: Array<Classification> = new Array<Classification>();
+
+  //User Informations 'Spenders, Admins, Guest etc'
+  public SpendersList: Array<UserInformation> = new Array<UserInformation>();
+  public SuppliersList: Array<UserInformation> = new Array<UserInformation>();
+  public ChosenSupplierObject: User = new User(); 
+  public SupplierItemActive: boolean = false; 
+
+
+  // List Groups 
+  public group1: Array<GroupType> = new Array<GroupType>();
+  public group2: Array<GroupType> = new Array<GroupType>();
+  public group3: Array<GroupType> = new Array<GroupType>();
+  public group4: Array<GroupType> = new Array<GroupType>();
 
   public ChosenGroup1Object: Group = new Group(); 
   public Group1ItemActive: boolean = false; 
@@ -60,32 +113,13 @@ export class McavBasicsComponent implements OnInit {
   public ChosenGroup4Object: Group = new Group(); 
   public Group4ItemActive: boolean = false; 
 
-
-  public mergedDataList : { article: Article, country: Country }[] = [];
-
-  // Warehouse Functions
-  public MUList: Array<MeasurementUnits> = new Array<MeasurementUnits>();
-  public WList: Array<Warehouse> = new Array<Warehouse>();
+  public group_length: Array<any> = new Array();
 
 
-  // Custom Tariffs Functions
-  public CTList: Array<CustomTarrifs> = new Array<CustomTarrifs>();
-
-  // Article Type Functions
-  public ATList: Array<ArticleType> = new Array<ArticleType>();
-
-  // Classification Functions
-  public CLList: Array<Classification> = new Array<Classification>();
-
-  //User Informations 'Spenders, Admins, Guest etc'
-  public SpendersList: Array<UserInformation> = new Array<UserInformation>();
-  public SuppliersList: Array<UserInformation> = new Array<UserInformation>();
-
-  // List Groups 
-  public group1: Array<GroupType> = new Array<GroupType>();
-  public group2: Array<GroupType> = new Array<GroupType>();
-  public group3: Array<GroupType> = new Array<GroupType>();
-  public group4: Array<GroupType> = new Array<GroupType>();
+  // Tax Parameters
+  public TaxList: Array<Tax> = new Array<Tax>();
+  public TaxChoseObject: Tax = new Tax();
+  public TaxObjectActive: boolean = false; 
 
 
   constructor (
@@ -97,7 +131,8 @@ export class McavBasicsComponent implements OnInit {
     public _ClassificationService: ClassificationsService,
     private _WarehouseService: WarehouseService,
     public _UserService: UserService,
-    private _GroupTypeService: GroupService
+    private _GroupTypeService: GroupService,
+    private _BankService: BankService
   ) {}
 
   ngOnInit(): void {
@@ -142,7 +177,8 @@ export class McavBasicsComponent implements OnInit {
           group: this.group4
         },
       ];
-      //console.log(this.group_length);
+
+      this.getTaxList();
   }
 
   getInfo = ()=> {
@@ -231,8 +267,28 @@ export class McavBasicsComponent implements OnInit {
       )
   }
 
+  getTaxList = () => {
+    this._BankService.getTax().subscribe(
+      response => {
+        this.TaxList = response;
+      }
+    )
+  }
+
   selectChosenItem = (object: any, name: string, active:boolean) => {
       switch(name){
+        case 'article_type':
+            this.ArticleTypeObject = object;
+            this.ArticleTypeActive = active;
+          break;
+        case 'unit_one':
+            this.UnitOneObject = object;
+            this.UnitOneActive = active;
+          break;    
+        case 'unit_one':
+            this.UnitTwoObject = object;
+            this.UnitTwoActive = active;
+          break;
         case 'suppliers':
           this.ChosenSupplierObject = object;
           this.SupplierItemActive = active;
@@ -256,7 +312,11 @@ export class McavBasicsComponent implements OnInit {
         case '04':
           this.ChosenGroup4Object = object;
           this.Group4ItemActive = active;
-         break;      
+         break;
+        case 'tax':
+            this.TaxChoseObject = object;
+            this.TaxObjectActive = active;
+          break;      
       }
   }
 
@@ -268,8 +328,14 @@ export class McavBasicsComponent implements OnInit {
         case 'supplier_menu':
             jQuery('.supplier_menu_dropdown').fadeToggle();
           break;
+        case 'manufacturer_menu':
+            jQuery('.manufacturer_menu_dropdown').fadeToggle();
+          break;
         case 'warehouse_menu':
           jQuery('.warehouse_dropdown_menu').fadeToggle();
+          break;
+        case 'warehouse_unit_one_dropdown_menu':
+            jQuery('.warehouse_unit_one_dropdown_menu').fadeToggle();
           break;
         case 'warehouse_unit_one_dropdown_menu':
             jQuery('.warehouse_unit_one_dropdown_menu').fadeToggle();
@@ -289,8 +355,39 @@ export class McavBasicsComponent implements OnInit {
         case 'group_type_dropdown_menu_04':
             jQuery('.group_type_dropdown_menu_04').fadeToggle();
           break;
+        case 'article_type_dropdown_menu':
+          jQuery('.article_type_dropdown_menu').fadeToggle();
+          break;
+        case 'warehouse_unit_two_dropdown_menu':
+            jQuery('.warehouse_unit_two_dropdown_menu').fadeToggle();
+          break;
+          case 'tax_menu_dropdown':
+            jQuery('.tax_menu_dropdown').fadeToggle();
+          break;
       }
   }
+
+
+
+  setItemToggle = (item: string) => {
+    if(jQuery(item).hasClass('translate-x-0')){
+      jQuery(item).removeClass('translate-x-0');
+      jQuery(item).addClass('translate-x-5');
+      jQuery(item).removeClass('bg-white');
+      jQuery(item).addClass('bg-indigo-400');
+    } else{
+      jQuery(item).removeClass('translate-x-5');
+      jQuery(item).addClass('translate-x-0');
+      jQuery(item).addClass('bg-white');
+      jQuery(item).removeClass('bg-indigo-400');
+    }
+  }
+
+
+  setObjectToggle = (item: string) => {
+    this.setItemToggle(`.${item}`);
+  }
+
   
   
 

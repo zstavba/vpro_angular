@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { UserAvatarComponent } from './dashboard/components/user-avatar/user-avatar.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -38,6 +38,11 @@ import { ControlPlan } from './dashboard/Classes/control-plan';
 import { ArticleBasics } from './dashboard/Classes/article-basics';
 import { GroupService } from './Services/group.service';
 import { SearchPipe } from './Pipes/search.pipe';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+import { initFlowbite } from 'flowbite';
+import { Currencies } from './dashboard/Classes/currencies';
 
 @Component({
   selector: 'app-root',
@@ -50,8 +55,9 @@ import { SearchPipe } from './Pipes/search.pipe';
     UserAvatarComponent, 
     HttpClientModule, 
     EditorModule,
-    
-
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     WarehouseService,
@@ -86,11 +92,21 @@ import { SearchPipe } from './Pipes/search.pipe';
     UpnCodes,
     ControlPlan,
     GroupService,
-    SearchPipe
+    SearchPipe,
+    Currencies
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent  implements OnInit {
   title = 'vpro';
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object){}
+
+
+  ngOnInit(): void {
+    if(isPlatformBrowser(this.platformId)){
+      initFlowbite();
+    }
+  }
 }

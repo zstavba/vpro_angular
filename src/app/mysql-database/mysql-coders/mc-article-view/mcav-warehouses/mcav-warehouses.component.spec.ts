@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { McavUsersComponent } from './mcav-users.component';
+import { McavWarehousesComponent } from './mcav-warehouses.component';
 
-describe('McavUsersComponent', () => {
-  let component: McavUsersComponent;
-  let fixture: ComponentFixture<McavUsersComponent>;
+describe('McavWarehousesComponent', () => {
+  let component: McavWarehousesComponent;
+  let fixture: ComponentFixture<McavWarehousesComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [McavUsersComponent]
+      imports: [McavWarehousesComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(McavUsersComponent);
+    fixture = TestBed.createComponent(McavWarehousesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
