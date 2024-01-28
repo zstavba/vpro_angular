@@ -3,6 +3,10 @@ import { SqlTableCodeComponent } from '../../../dashboard/components/sql-table-c
 import { SqlObjectItem } from '../../../dashboard/Classes/sql-object-item';
 import { CommercialService } from '../../../Services/commercial.service';
 import { response } from 'express';
+import { RouterLink } from '@angular/router';
+import { SystemPaginationComponent } from '../../../dashboard/components/system-pagination/system-pagination.component';
+import { SqlTableComponent } from '../../../dashboard/components/sql-table/sql-table.component';
+import { Observable } from 'rxjs';
 
  enum ObjectType {
   IZJAVE = 'izjave',
@@ -15,7 +19,10 @@ import { response } from 'express';
   selector: 'app-mc-commercial',
   standalone: true,
   imports: [
-    SqlTableCodeComponent
+    SqlTableCodeComponent,
+    RouterLink,
+    SystemPaginationComponent,
+    SqlTableComponent
   ],
   templateUrl: './mc-commercial.component.html',
   styleUrl: './mc-commercial.component.scss'
@@ -35,6 +42,7 @@ export class McCommercialComponent  implements OnInit {
 
   ngOnInit(): void {
     this.setItems(ObjectType.DEFAULT);
+    this.getExchangeRates();
   }
 
 
@@ -186,37 +194,54 @@ export class McCommercialComponent  implements OnInit {
     //this.cdr.detectChanges();
   }
 
-  getExchangeRates = () => {
-    this._CommercialService.getExchangeRates().subscribe(
-      response => {
-
+  // Recursive function to call a specific Service, and the function this service has. 
+  // U can add diferend Servicess to these function.
+  callSelectedService = (serviceName: () => Observable<any>, functionName: string) => {
+    let startTime = performance.now();
+    serviceName().subscribe(
+      (response: any) => {
+        this.DataList = response;
+        this.cdr.detectChanges();
+        let endTime = performance.now();
+        this.responseTime = ((endTime - startTime) / 1000).toFixed(2);
       }
     )
+  }
+
+
+
+
+  getExchangeRates = () => {
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getExchangeRates")
   }
 
   getOpenMode = () => {
-    this._CommercialService.getOpenMode().subscribe(
-      response => {
-
-      }
-    )
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getOpenMode")
   }
 
   getCreditNote = () => {
-    this._CommercialService.getCreditNote().subscribe(
-      response => {
-
-      }
-    )
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getCreditNote")
   }
 
   getFakturing = () => {
-    this._CommercialService.getFakturing().subscribe(
-      response => {
-        
-      }
-    );
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getFacturing")
   }
+
+  getSupplierOrder = () => {
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getSupplierOrder")
+  }
+
+  getCostumerOrder = () => {
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getCostumerOrder")
+  }
+
+  getDebitNote = () => {
+    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getDebitNote")
+  }
+
+
+
+
 
 }
 

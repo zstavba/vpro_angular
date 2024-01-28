@@ -50,6 +50,8 @@ import { ExchangeRates } from './dashboard/Classes/exchange-rates';
 import { CommercialService } from './Services/commercial.service';
 import { DebitNote } from './dashboard/Classes/debit-note';
 import { CreditNote } from './dashboard/Classes/credit-note';
+import { SupplierOrder } from './dashboard/Classes/supplier-order';
+import { CostumerOrder } from './dashboard/Classes/costumer-order';
 
 @Component({
   selector: 'app-root',
@@ -106,7 +108,9 @@ import { CreditNote } from './dashboard/Classes/credit-note';
     ExchangeRates,
     CommercialService,
     DebitNote,
-    CreditNote
+    CreditNote,
+    SupplierOrder,
+    CostumerOrder
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

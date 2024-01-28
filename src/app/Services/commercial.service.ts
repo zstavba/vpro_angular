@@ -5,6 +5,8 @@ import { OpenMode } from '../dashboard/Classes/open-mode';
 import { HttpClient } from '@angular/common/http';
 import { CreditNote } from '../dashboard/Classes/credit-note';
 import { Fakturing } from '../dashboard/Classes/fakturing';
+import { SupplierOrder } from '../dashboard/Classes/supplier-order';
+import { CostumerOrder } from '../dashboard/Classes/costumer-order';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +33,13 @@ export class CommercialService {
   getFakturing = (): Observable<Fakturing[]> => {
     return this.http.get<Fakturing[]>(`${this.http_link}/commercial/fakturing`);
   }
+
+  getSupplierOrder = (): Observable<SupplierOrder[]> => {
+    return this.http.get<SupplierOrder[]>(`${this.http_link}/commercial/supplier/orders`);
+  }
+
+  getCustomerOrder = (): Observable<CostumerOrder[]> => {
+    return this.http.get<CostumerOrder[]>(`${this.http_link}/commercial/costumer/orders`)
+  }
+
 }
