@@ -43,6 +43,13 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { initFlowbite } from 'flowbite';
 import { Currencies } from './dashboard/Classes/currencies';
+import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
+import { SqlObjectItem } from './dashboard/Classes/sql-object-item';
+import { OpenMode } from './dashboard/Classes/open-mode';
+import { ExchangeRates } from './dashboard/Classes/exchange-rates';
+import { CommercialService } from './Services/commercial.service';
+import { DebitNote } from './dashboard/Classes/debit-note';
+import { CreditNote } from './dashboard/Classes/credit-note';
 
 @Component({
   selector: 'app-root',
@@ -93,7 +100,13 @@ import { Currencies } from './dashboard/Classes/currencies';
     ControlPlan,
     GroupService,
     SearchPipe,
-    Currencies
+    Currencies,
+    SqlObjectItem,
+    OpenMode,
+    ExchangeRates,
+    CommercialService,
+    DebitNote,
+    CreditNote
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

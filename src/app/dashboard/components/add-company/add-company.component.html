@@ -1,5 +1,5 @@
 <!-- Main modal -->
-<div id="addUserModule" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="addUserModule" [formGroup]="addCompanyForm" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
   <div class="relative w-full max-w-4xl max-h-full">
       <!-- Modal content -->
       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -17,27 +17,21 @@
           </div>
           <!-- Modal body -->
           <div class="p-4 md:p-5 space-y-4 grid grid-cols-3 gap-4 space-y-4">
-            <dropdown-select [dataList]="UsersList" valueType="Uporabniki"></dropdown-select>
-            <div class="relative max-w-sm mt-4">
-              <div class="absolute inset-y-0 start-0 flex items-center ps-3 mt-2 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                </svg>
-              </div>
-              <input datepicker type="text" class="bg-gray-50 mt-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Rok Dobave">
-            </div>
-            <div class="relative max-w-sm mt-4">
-              <div class="absolute inset-y-0 start-0 flex items-center ps-3 mt-2 pointer-events-none">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                </svg>
-              </div>
-              <input datepicker type="text" class="bg-gray-50 mt-3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Dan nakupa">
-            </div> 
+            <dropdown-select [dataList]="UsersList"  valueType="Uporabniki" (itemClicked)="onDropdownItemClicked($event)" (getData)="onDropdownSelection($event)"></dropdown-select>
+            <mat-form-field>
+              <input matInput [matDatepicker]="datepicker" formControlName="article_date_shopping" placeholder="Rok Dobave">
+              <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput [matDatepicker]="start_date_picker" formControlName="article_start_date" placeholder="Dan nakupa">
+              <mat-datepicker-toggle matSuffix [for]="start_date_picker"></mat-datepicker-toggle>
+              <mat-datepicker #start_date_picker></mat-datepicker>
+            </mat-form-field>
             <div>
               <label for="article_NC" class="block text-sm font-medium leading-6 text-gray-900">NC</label>
               <div class="mt-2">
-                <input type="text" name="article_NC" id="article_NC" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+                <input type="text" name="article_NC" formControlName="article_NC"  id="article_NC" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
               </div>
             </div>
             <div>
@@ -47,10 +41,55 @@
               </div>
             </div>      
             <dropdown-select [dataList]="CurrenciesList" valueType="Valuta"></dropdown-select>
+            <div>
+              <label for="article_dev_fc" class="block text-sm font-medium leading-6 text-gray-900">Dev. FC</label>
+              <div class="mt-2">
+                <input type="text" name="article_dev_fc" formControlName="article_dev_FC" id="article_dev_fc" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+              </div>
+            </div>
+            <div>
+              <label for="article_procantage_rabat" class="block text-sm font-medium leading-6 text-gray-900">% rabata</label>
+              <div class="mt-2">
+                <input type="text" name="article_procantage_rabat" formControlName="article_procantage_rabat" id="article_procantage_rabat" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+              </div>
+            </div>
+            <div>
+              <label for="article_procantage_s_rabat" class="block text-sm font-medium leading-6 text-gray-900">% S rabata</label>
+              <div class="mt-2">
+                <input type="text" name="article_procantage_s_rabat" formControlName="article_procantage_s_rabat" id="article_procantage_s_rabat" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+              </div>
+            </div>
+            <div>
+              <label for="article_procantage_ammount" class="block text-sm font-medium leading-6 text-gray-900">% stroškov</label>
+              <div class="mt-2">
+                <input type="text" name="article_procantage_ammount" formControlName="article_procantage_ammount" id="article_procantage_ammount" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+              </div>
+            </div>
+            <div>
+              <label for="article_requests" class="block text-sm font-medium leading-6 text-gray-900">Povpraševanja</label>
+              <div class="mt-2">
+                <input type="text" name="article_requests" formControlName="article_requests" id="article_requests" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+              </div>
+            </div>
+            <div>
+              <label for="article_calculation_id" class="block text-sm font-medium leading-6 text-gray-900">Kalkulacija</label>
+              <div class="mt-2">
+                <input type="text" [value]="randomizedStringValue" name="article_calculation_id"  id="article_calculation_id" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" >
+              </div>
+            </div>
+            <dropdown-select [dataList]="UsersList" valueType="Operater" (itemClicked)="onDropdownItemClicked($event)" (getData)="onDropdownSelection($event)" ></dropdown-select>
+            <div class="relative max-w-sm mt-12">
+              <div class="absolute inset-y-0 start-0 flex items-center ps-2 mt-5 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                </svg>
+              </div>
+              <input datepicker type="text" class="bg-gray-50 mt-6 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Datum Nabave">
+            </div>
           </div>
           <!-- Modal footer -->
           <div class="flex items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-              <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Shrani</button>
+              <button data-modal-hide="default-modal" type="button" (click)="saveAddCompanyData()"  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Shrani</button>
               <button data-modal-hide="default-modal" type="button" class="ms-3 text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Zavrni</button>
           </div>
       </div>

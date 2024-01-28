@@ -46,4 +46,6 @@ export class WarehouseService {
     return this.http.get<Areas[]>(`${this.http_link}/warehouse/areas`);
   }
 
+
+
 }

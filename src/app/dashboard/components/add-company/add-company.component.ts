@@ -1,9 +1,9 @@
-import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { UserService } from '../../../Services/user.service';
 import { response } from 'express';
 import { User } from '../../Classes/user';
 import { UserInformation } from '../../Classes/user-information';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from '../../../Pipes/search.pipe';
 import * as $ from 'jquery';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -38,6 +38,11 @@ import { DropdownSelectComponent } from '../dropdown-select/dropdown-select.comp
 })
 export class AddCompanyComponent  implements OnInit {
 
+  public addCompanyForm !: FormGroup;
+
+  public randomizedStringValue: string = '';
+
+
 
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -59,16 +64,35 @@ export class AddCompanyComponent  implements OnInit {
     private _UserService: UserService,
     private _BankService: BankService,
     private _renderer: Renderer2,
-    private overlayContainer: OverlayContainer
+    private overlayContainer: OverlayContainer,
+    private _formBuilder: FormBuilder
   ){
     overlayContainer.getContainerElement().classList.add('modal-overlay');
-
   }
+
+  
+
 
   ngOnInit(): void {
     //window.dispatchEvent(new Event('resize'));
     this.getUsers();
     this.getCurrencies();
+    this.generateRandomString('KA',8);
+    this.addCompanyForm = this._formBuilder.group({
+      'article_date_shopping':  [''],
+      'article_start_date':  [''],
+      'article_NC': [''],
+      'article_dev_FC': [''],
+      'article_procantage_rabat': [''],
+      'article_procantage_s_rabat': [''],
+      'article_procantage_ammount': [''],
+      'article_requests': [''],
+      'article_calculation_id': [this.randomizedStringValue],
+      'article_users': [],
+      'article_operator': []
+    })
+
+
   }
 
 
@@ -103,9 +127,41 @@ export class AddCompanyComponent  implements OnInit {
       }
     )
   }
+
+  generateRandomString = (prefix: string, length: number)  => {
+    const randomPart = Math.random().toString().slice(2, length + 2);
+    this.randomizedStringValue=  prefix + randomPart;
+  }
   
 
+  saveAddCompanyData = () => {
+   
+    console.log(this.addCompanyForm.value);    
 
+  }
+  
+  onDropdownSelection = (selectedValue: any) => {
+    //console.log(selectedValue)
+  }
+
+
+  onDropdownItemClicked(clickedData: any) {
+    if (clickedData.article_operator) {
+      // Handle article_operator logic
+      this.addCompanyForm.patchValue({
+        'article_operator': clickedData.article_operator
+      });
+    } else if (clickedData.article_users) {
+      // Handle article_users logic
+      this.addCompanyForm.patchValue({
+        'article_users': clickedData.article_users
+      });
+    } else {
+      // Handle other cases if needed
+    }
+
+
+  }
 
 }
 
