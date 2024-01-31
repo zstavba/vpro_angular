@@ -212,19 +212,19 @@ export class McCommercialComponent  implements OnInit {
 
 
   getExchangeRates = () => {
-    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getExchangeRates")
+    this.callSelectedService(this._CommercialService.getExchangeRates.bind(this._CommercialService), "getExchangeRates")
   }
 
   getOpenMode = () => {
-    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getOpenMode")
+    this.callSelectedService(this._CommercialService.getOpenMode.bind(this._CommercialService), "getOpenMode")
   }
 
   getCreditNote = () => {
-    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getCreditNote")
+    this.callSelectedService(this._CommercialService.getCreditNote.bind(this._CommercialService), "getCreditNote")
   }
 
   getFakturing = () => {
-    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getFacturing")
+    this.callSelectedService(this._CommercialService.getFakturing.bind(this._CommercialService), "getFacturing")
   }
 
   getSupplierOrder = () => {
@@ -232,14 +232,20 @@ export class McCommercialComponent  implements OnInit {
   }
 
   getCostumerOrder = () => {
-    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getCostumerOrder")
+    this.callSelectedService(this._CommercialService.getCustomerOrder.bind(this._CommercialService), "getCostumerOrder")
   }
 
   getDebitNote = () => {
-    this.callSelectedService(this._CommercialService.getSupplierOrder.bind(this._CommercialService), "getDebitNote")
+    this.callSelectedService(this._CommercialService.getDebitNote.bind(this._CommercialService), "getDebitNote")
   }
 
+  getOffers = () => {
+    this.callSelectedService(this._CommercialService.getOffers.bind(this._CommercialService), "getOffers")
+  }
 
+  getEstimates = () => {
+    this.callSelectedService(this._CommercialService.getEstimates.bind(this._CommercialService), "getEstimates")
+  }
 
 
 

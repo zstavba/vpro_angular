@@ -52,6 +52,9 @@ import { DebitNote } from './dashboard/Classes/debit-note';
 import { CreditNote } from './dashboard/Classes/credit-note';
 import { SupplierOrder } from './dashboard/Classes/supplier-order';
 import { CostumerOrder } from './dashboard/Classes/costumer-order';
+import { Offers } from './dashboard/Classes/offers';
+import { Estimates } from './dashboard/Classes/estimates';
+import { FolderService } from './Services/folder.service';
 
 @Component({
   selector: 'app-root',
@@ -110,7 +113,10 @@ import { CostumerOrder } from './dashboard/Classes/costumer-order';
     DebitNote,
     CreditNote,
     SupplierOrder,
-    CostumerOrder
+    CostumerOrder,
+    Offers,
+    Estimates,
+    FolderService
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

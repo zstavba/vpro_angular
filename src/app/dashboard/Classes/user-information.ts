@@ -20,8 +20,9 @@ export class UserInformation {
     public tax_number: string = '';
     public phone_number: string = '';
     public adress: string = '';
-    public profile_image: UserType = UserType.guest;
-
+    public user_type: UserType = UserType.guest;
+    public profile_image: string = '';
+    
     constructor(){}
 
     static getKeys = () => {
