@@ -24,7 +24,8 @@ const route: Routes = [
   },
   {
     path: "files",
-    component: UserFileManagerComponent
+    component: UserFileManagerComponent,
+    loadChildren : () => import('./user-file-manager/user-file-manager-routing.module').then(m => m.UserFileManagerRoutingModule)
   },
   {
     path: "settings",

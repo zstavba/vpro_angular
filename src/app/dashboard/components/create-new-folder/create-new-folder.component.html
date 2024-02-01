@@ -1,8 +1,9 @@
-<div id="create-new-folder" tabindex="-1" aria-hidden="true" class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<div id="create-new-folder" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="backdrop w-full h-full bg-gray-500/20 absolute t-0 z-10"></div>
-    <div class="absolute left-0 right-0 mx-auto p-4 my-[12rem] max-w-2xl max-h-full z-50">
+    <div class="absolute left-0 right-0 mx-auto p-4 my-[5rem] max-w-2xl max-h-full z-50">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+        <div [formGroup]="FolderGroup"  class="relative bg-white rounded-lg shadow dark:bg-gray-700 ">
+
             <div class="grid grid-cols-2 gap-4 p-4 border-b border-gray-200">
                 <div class="flex items-left space-x-4 py-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-700 font-medium">
@@ -20,27 +21,119 @@
                     </button>
                 </div>
             </div>
-            <div class="p-4">
+            @if (isError) {
+                <div class="p-4">
+                    <div class="rounded-md bg-red-50 p-4">
+                        <div class="flex">
+                          <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clip-rule="evenodd" />
+                            </svg>
+                          </div>
+                          <div class="ml-3">
+                            <h3 class="text-sm font-medium text-red-800">Sistemske napake:</h3>
+                            <div class="mt-2 text-sm text-red-700">
+                              <ul role="list" class="list-disc space-y-1 pl-5">
+                                <li>
+                                    {{ errorMessage }}
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            }  
+            <div class="p-4 space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label for="folder_name" class="block text-sm font-medium leading-6 text-gray-900">Naslov Datoteke</label>
                         <div class="mt-2">
-                          <input type="text" name="folder_name" id="folder_name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Primer: Meritve, Tehnologija Filtri ...">
+                          <input type="text" formControlName="title"  [(ngModel)]="folder_name" name="folder_name" id="folder_name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Primer: Meritve, Tehnologija Filtri ...">
                         </div>
                     </div>
                     <div>
-                        <label for="folder_name" class="block text-sm font-medium leading-6 text-gray-900">Naslov Datoteke</label>
-                        <div class="mt-2">
-                          <input type="text" name="folder_name" id="folder_name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="Primer: Meritve, Tehnologija Filtri ...">
-                        </div>
+                        <label for="folder_type" class="block text-sm font-medium leading-6 text-gray-900">
+                            Tip Datoteke
+                        </label>
+                        <select id="location"  formControlName="type" (change)="getFolderTypeName($event)"  name="location"  class="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <option selected>Iztberite tip datoteke</option>
+                            <option [value]="getFolderType().MERITVE">Meritve</option>
+                            <option [value]="getFolderType().TEHNOLOGIJA">Tehnolgija</option>
+                            <option [value]="getFolderType().KONTROLNI_PLAN" >Kontrolni Plan</option>
+                            <option [value]="getFolderType().NAPAKE">Napake</option>
+                          </select>
                     </div>
+                </div>
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-[150px] border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                            </svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Izberite datoteke na klik</span> ali jih sustite v to okence.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF, PDF, XLS,CSV (MAX. 15 MB)</p>
+                        </div>
+                        <input (change)="getFolderItems($event.target)"  id="dropzone-file" multiple="true" type="file" class="hidden" />
+                    </label>
+                </div> 
+                <div class="w-full space-y-4">
+                    @for(file of FolderFiles; track file){
+                        @if(file != undefined || file != null){
+                            <div class="grid grid-cols-3 gap-4 bg-gray-50 hover:bg-gray-100 border border-slate-700/50 rounded shadow-sm shadow-sky-500/20">
+                                <div class="col-span-2 flex items-left space-x-4">
+                                    <img [src]="setFileType(file.type)" class="h-12 w-12 my-3 mx-2">
+                                    <div class="space-y-1 py-1.5">
+                                        <div class="text-sm">
+                                           {{ showFileName(file.name) }}
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            <div class="group block flex-shrink-0">
+                                                <div class="flex items-center">
+                                                  <div>
+                                                    <img class="inline-block h-6 w-6 rounded-full" [src]="user_info.profile_image" alt="">
+                                                  </div>
+                                                  <div class="ml-3 py-1.5">
+                                                    <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{ user.firstName }} {{ user.lastName }}</p>
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="text-xs text-slate-700 p-2">
+                                                Tip Datoteke: <span class="font-medium">{{ (folder_type_name == '') ? 'ni podan' : folder_type_name }}</span>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>
+                                <div class="text-right p-4">
+                                    <button (click)="deleteFolderItem(file)" type="button" class="rounded-md bg-red-50 px-2.5 py-1.5 text-sm font-semibold text-red-600 shadow-sm hover:bg-red-100">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                        </svg>                                  
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    } @empty {
+                        <div class="rounded-md bg-blue-50 p-4">
+                            <div class="flex">
+                              <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-blue-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                  <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z" clip-rule="evenodd" />
+                                </svg>
+                              </div>
+                              <div class="ml-3 flex-1 md:flex md:justify-between">
+                                <p class="text-sm text-blue-700">Preden želite ustvariti mapo, dodajte vsaj eno datoteko.</p>
+                              </div>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4 p-4 border-t border-gray-200">
                 <div></div>
                 <div class="grid grid-cols-2 gap-4">
                     <button type="button" class="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600 shadow-sm hover:bg-red-100">Preklči</button>
-                    <button type="button" class="rounded-md bg-green-50 px-3 py-2 text-sm  text-green-600 shadow-sm hover:bg-green-100">Shrani</button>
+                    <button (click)="createNewFolder()" type="button" class="rounded-md bg-green-50 px-3 py-2 text-sm  text-green-600 shadow-sm hover:bg-green-100">Shrani</button>
 
                 </div>
             </div>
