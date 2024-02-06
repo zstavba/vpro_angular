@@ -13,8 +13,8 @@ export class FolderService {
 
   constructor(private http: HttpClient) { }
 
-  getFolderItems = (folderID: number): Observable<FolderItem[]> => {
-    return this.http.get<FolderItem[]>(`${this.http_link}/filemanager/get/folders/items/${folderID}`);
+  getFolderItems = (folderID: number): Observable<any[]> => {
+    return this.http.get<any[]>(`${this.http_link}/filemanager/get/folders/items/${folderID}`);
   }
 
   getFolders = (): Observable<Folder[]> => {
@@ -46,12 +46,33 @@ export class FolderService {
     return this.http.get<Folder>(`${this.http_link}/filemanager/get/folder/object/${folder_title}`)
   }
 
+  uploadNewFolderItems = (items: any): Observable<any> => {
+    let data = new FormData();
+    data.append('folder_id',items.folder_id);
+    Array.from(items.files).forEach((element: any) => {
+      data.append('upload_files',element, element.name)
+    });
+    return this.http.post<any>(`${this.http_link}/filemanager/upload/new/items`,data);
+  }
+
+  createSubFolder = (data:any): Observable<any> => {
+
+
+      return this.http.post<any>(`${this.http_link}/filemanager/create/new/sub/folder`,data)
+  }
+
   updateFolder = () => {
 
   }
 
-  deleteFolder = () => {
+  deleteFolder = (folderID: number) => {
 
+  }
+
+
+  
+  deleteFolderItem = (itemID: number) : Observable<FolderItem> => {
+    return this.http.delete<FolderItem>(`${this.http_link}/filemanager/delete/folder/item/${itemID}`)
   }
 
 

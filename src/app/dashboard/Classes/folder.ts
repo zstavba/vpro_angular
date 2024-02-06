@@ -9,6 +9,12 @@ enum FolderType {
     DEFAULT = 'null',
 }
 
+enum MessageType {
+    ERROR =  "border border-red-200",
+    SUCCESS = "border border-green-200",
+    DEFAULT = "border border-gray-200"
+}
+
 
 export class Folder {
 
@@ -20,6 +26,9 @@ export class Folder {
     public folder_items: Array<FolderItem> = new Array<FolderItem>();
     public updated_at: Date = new Date();
     public created_at: Date = new Date();
+
+    public system_message: string = '';
+    public message_type: MessageType = MessageType.DEFAULT;
 
     constructor () {
 
